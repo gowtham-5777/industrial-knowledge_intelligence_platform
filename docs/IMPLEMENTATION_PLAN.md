@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.1 — Project Bootstrap |
+| **Current Milestone** | Milestone 1.2 — Backend Foundation |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | 0% |
+| **Overall Progress** | ~2% (1 milestone complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.2 — Backend Foundation |
-| **Last Tracker Update** | 2026-07-16 — Plan created; all items Not Started |
+| **Next Milestone After Current** | Milestone 1.3 — Database |
+| **Last Tracker Update** | 2026-07-17 — Milestone 1.1 Complete; awaiting approval for 1.2 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -304,7 +304,7 @@ Phases match Architecture §24 exactly.
 
 | ID | Milestone | Status |
 |---|---|---|
-| 1.1 | Project Bootstrap | Not Started |
+| 1.1 | Project Bootstrap | Complete |
 | 1.2 | Backend Foundation | Not Started |
 | 1.3 | Database (PostgreSQL) | Not Started |
 | 1.4 | Authentication | Not Started |
@@ -399,11 +399,11 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.1.1 | Create monorepo / workspace layout | Not Started |
-| 1.1.2 | Initialize backend Python project | Not Started |
-| 1.1.3 | Initialize frontend Next.js TypeScript app | Not Started |
-| 1.1.4 | Add root README, `.env.example`, `.gitignore` | Not Started |
-| 1.1.5 | Define package/tooling baselines (lint, format, pytest, ESLint) | Not Started |
+| 1.1.1 | Create monorepo / workspace layout | Complete |
+| 1.1.2 | Initialize backend Python project | Complete |
+| 1.1.3 | Initialize frontend Next.js TypeScript app | Complete |
+| 1.1.4 | Add root README, `.env.example`, `.gitignore` | Complete |
+| 1.1.5 | Define package/tooling baselines (lint, format, pytest, ESLint) | Complete |
 
 ## Milestone 1.2 — Backend Foundation
 
@@ -1507,7 +1507,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | Not Started | 0% | Engineering | Architecture Report | — | Active phase |
+| Phase 1 — Foundation | In Progress | 9% (1/11 milestones) | Engineering | Architecture Report | — | Milestone 1.1 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1518,8 +1518,8 @@ Every milestone checklist must cover the applicable subset:
 
 | Milestone | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|---|
-| 1.1 Project Bootstrap | 1 | Not Started | 0% | — | — | — | **ACTIVE** |
-| 1.2 Backend Foundation | 1 | Not Started | 0% | — | 1.1 | — | — |
+| 1.1 Project Bootstrap | 1 | Complete | 100% | Engineering | — | 2026-07-17 | Monorepo + scaffolds + tooling; root README on GitHub (not duplicated locally) |
+| 1.2 Backend Foundation | 1 | Not Started | 0% | — | 1.1 | — | **ACTIVE** |
 | 1.3 Database | 1 | Not Started | 0% | — | 1.2 | — | — |
 | 1.4 Authentication | 1 | Not Started | 0% | — | 1.3 | — | — |
 | 1.5 Object Storage | 1 | Not Started | 0% | — | 1.2 | — | Parallel with 1.4 after 1.2 |
