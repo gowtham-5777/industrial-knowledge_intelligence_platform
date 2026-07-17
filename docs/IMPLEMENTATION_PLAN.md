@@ -6,7 +6,7 @@
 **Status:** Active — Single Source of Truth for Development  
 **Architecture Authority:** [ARCHITECTURE.md](ARCHITECTURE.md) — Master Software Architecture Report (finalized; **never modify unless explicitly requested**)  
 **Created:** 2026-07-16  
-**Last Updated:** 2026-07-16  
+**Last Updated:** 2026-07-17  
 
 ---
 
@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.2 — Backend Foundation |
+| **Current Milestone** | Milestone 1.3 — Database |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~2% (1 milestone complete) |
+| **Overall Progress** | ~4% (2 milestones complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.3 — Database |
-| **Last Tracker Update** | 2026-07-17 — Milestone 1.1 Complete; awaiting approval for 1.2 |
+| **Next Milestone After Current** | Milestone 1.4 — Authentication |
+| **Last Tracker Update** | 2026-07-17 — Milestone 1.2 Complete; awaiting approval for 1.3 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -305,7 +305,7 @@ Phases match Architecture §24 exactly.
 | ID | Milestone | Status |
 |---|---|---|
 | 1.1 | Project Bootstrap | Complete |
-| 1.2 | Backend Foundation | Not Started |
+| 1.2 | Backend Foundation | Complete |
 | 1.3 | Database (PostgreSQL) | Not Started |
 | 1.4 | Authentication | Not Started |
 | 1.5 | Object Storage | Not Started |
@@ -409,15 +409,15 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.2.1 | Initialize FastAPI application entrypoint | Not Started |
-| 1.2.2 | Project settings via pydantic-settings / env | Not Started |
-| 1.2.3 | Dependency injection container / FastAPI Depends pattern | Not Started |
-| 1.2.4 | Middleware stack (CORS, request ID, timing) | Not Started |
-| 1.2.5 | API versioning (`/api/v1`) | Not Started |
-| 1.2.6 | Global error handling + error envelope | Not Started |
-| 1.2.7 | OpenAPI configuration | Not Started |
-| 1.2.8 | Health / readiness endpoints | Not Started |
-| 1.2.9 | Response envelope convention `{ data, meta, errors }` | Not Started |
+| 1.2.1 | Initialize FastAPI application entrypoint | Complete |
+| 1.2.2 | Project settings via pydantic-settings / env | Complete |
+| 1.2.3 | Dependency injection container / FastAPI Depends pattern | Complete |
+| 1.2.4 | Middleware stack (CORS, request ID, timing) | Complete |
+| 1.2.5 | API versioning (`/api/v1`) | Complete |
+| 1.2.6 | Global error handling + error envelope | Complete |
+| 1.2.7 | OpenAPI configuration | Complete |
+| 1.2.8 | Health / readiness endpoints | Complete |
+| 1.2.9 | Response envelope convention `{ data, meta, errors }` | Complete |
 
 ## Milestone 1.3 — Database (PostgreSQL)
 
@@ -984,31 +984,31 @@ Every task must be executed as:
 
 | Subtask | Status |
 |---|---|
-| Create application factory | Not Started |
-| Mount routers under `/api/v1` | Not Started |
-| Add `/health` and `/ready` | Not Started |
-| Verify OpenAPI at `/docs` | Not Started |
-| Run locally | Not Started |
+| Create application factory | Complete |
+| Mount routers under `/api/v1` | Complete |
+| Add `/health` and `/ready` | Complete |
+| Verify OpenAPI at `/docs` | Complete |
+| Run locally | Complete |
 
 ### Project Settings
 
 | Subtask | Status |
 |---|---|
-| `Settings` class from env | Not Started |
-| Separate `dev`/`prod` safe defaults | Not Started |
-| Fail fast on missing critical secrets in prod mode | Not Started |
+| `Settings` class from env | Complete |
+| Separate `dev`/`prod` safe defaults | Complete |
+| Fail fast on missing critical secrets in prod mode | Complete |
 
 ### DI / Middleware / Errors / Envelope
 
 | Subtask | Status |
 |---|---|
-| Depends-based service injection | Not Started |
-| CORS from settings | Not Started |
-| Request ID middleware | Not Started |
-| Exception handlers → `{ data, meta, errors }` | Not Started |
-| Machine-readable `error_code` | Not Started |
+| Depends-based service injection | Complete |
+| CORS from settings | Complete |
+| Request ID middleware | Complete |
+| Exception handlers → `{ data, meta, errors }` | Complete |
+| Machine-readable `error_code` | Complete |
 
-**Milestone 1.2 DoD:** FastAPI app documented in OpenAPI; health OK; errors typed; settings via env; project runnable.
+**Milestone 1.2 DoD:** FastAPI app documented in OpenAPI; health OK; errors typed; settings via env; project runnable. **Met — 2026-07-17.**
 
 ---
 
@@ -1507,7 +1507,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | In Progress | 9% (1/11 milestones) | Engineering | Architecture Report | — | Milestone 1.1 Complete |
+| Phase 1 — Foundation | In Progress | 18% (2/11 milestones) | Engineering | Architecture Report | — | Milestone 1.2 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1519,8 +1519,8 @@ Every milestone checklist must cover the applicable subset:
 | Milestone | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|---|
 | 1.1 Project Bootstrap | 1 | Complete | 100% | Engineering | — | 2026-07-17 | Monorepo + scaffolds + tooling; root README on GitHub (not duplicated locally) |
-| 1.2 Backend Foundation | 1 | Not Started | 0% | — | 1.1 | — | **ACTIVE** |
-| 1.3 Database | 1 | Not Started | 0% | — | 1.2 | — | — |
+| 1.2 Backend Foundation | 1 | Complete | 100% | Engineering | 1.1 | 2026-07-17 | FastAPI factory, settings, DI, middleware, `/api/v1`, envelope, health/ready |
+| 1.3 Database | 1 | Not Started | 0% | — | 1.2 | — | **ACTIVE** |
 | 1.4 Authentication | 1 | Not Started | 0% | — | 1.3 | — | — |
 | 1.5 Object Storage | 1 | Not Started | 0% | — | 1.2 | — | Parallel with 1.4 after 1.2 |
 | 1.6 Google Drive Integration | 1 | Not Started | 0% | — | 1.3, 1.5 | — | Critical path |
