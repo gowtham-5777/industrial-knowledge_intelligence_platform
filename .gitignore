@@ -57,3 +57,7 @@ Desktop.ini
 *.tmp
 *.temp
 .cache/
+
+# Local SQLite smoke DBs
+*.db
+*.db-journal

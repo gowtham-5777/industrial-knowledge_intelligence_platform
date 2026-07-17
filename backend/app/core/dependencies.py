@@ -6,9 +6,11 @@ from collections.abc import Generator
 from typing import Annotated
 
 from fastapi import Depends, Request
+from sqlalchemy.orm import Session
 
 from app.core.config import Settings, get_settings
 from app.core.middleware import get_request_id
+from app.db.session import get_db
 
 
 def provide_settings() -> Generator[Settings, None, None]:
@@ -23,3 +25,4 @@ def provide_request_id(request: Request) -> str | None:
 
 SettingsDep = Annotated[Settings, Depends(provide_settings)]
 RequestIdDep = Annotated[str | None, Depends(provide_request_id)]
+DbSessionDep = Annotated[Session, Depends(get_db)]

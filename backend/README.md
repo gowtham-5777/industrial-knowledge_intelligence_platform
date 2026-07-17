@@ -10,8 +10,13 @@
 #   copy ..\.env.example ..\.env    # Windows
 #   # cp ../.env.example ../.env    # macOS / Linux
 #
-# Run API (Milestone 1.2):
+# Run API (Milestone 1.2+):
 #   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+#
+# Database (Milestone 1.3):
+#   # Ensure DATABASE_URL points at PostgreSQL (or sqlite for local smoke)
+#   alembic upgrade head
+#   python -m app.db.seed_cli
 #
 # Probes:
 #   GET /health

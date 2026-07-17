@@ -13,6 +13,7 @@ dependencies = [
   "uvicorn[standard]>=0.32.0",
   "sqlalchemy>=2.0.36",
   "alembic>=1.14.0",
+  "psycopg[binary]>=3.2.0",
   "pydantic-settings>=2.6.0",
   "httpx>=0.28.0",
   "celery>=5.4.0",
@@ -36,6 +37,7 @@ include = ["app*"]
 target-version = "py311"
 line-length = 88
 src = ["app", "tests"]
+extend-exclude = ["alembic/versions"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
@@ -43,6 +45,7 @@ select = ["E", "F", "I", "UP", "B"]
 [tool.black]
 line-length = 88
 target-version = ["py311"]
+extend-exclude = "/alembic/versions/"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

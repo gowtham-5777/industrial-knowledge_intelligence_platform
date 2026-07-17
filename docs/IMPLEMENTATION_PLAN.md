@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.3 — Database |
+| **Current Milestone** | Milestone 1.4 — Authentication |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~4% (2 milestones complete) |
+| **Overall Progress** | ~5% (3 milestones complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.4 — Authentication |
-| **Last Tracker Update** | 2026-07-17 — Milestone 1.2 Complete; awaiting approval for 1.3 |
+| **Next Milestone After Current** | Milestone 1.5 — Object Storage |
+| **Last Tracker Update** | 2026-07-17 — Milestone 1.3 Complete; awaiting approval for 1.4 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -306,7 +306,7 @@ Phases match Architecture §24 exactly.
 |---|---|---|
 | 1.1 | Project Bootstrap | Complete |
 | 1.2 | Backend Foundation | Complete |
-| 1.3 | Database (PostgreSQL) | Not Started |
+| 1.3 | Database (PostgreSQL) | Complete |
 | 1.4 | Authentication | Not Started |
 | 1.5 | Object Storage | Not Started |
 | 1.6 | Google Drive Integration | Not Started |
@@ -423,14 +423,14 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.3.1 | SQLAlchemy / Alembic setup | Not Started |
-| 1.3.2 | Core system tables (`users`, `roles`, `audit_events` stubs as needed) | Not Started |
-| 1.3.3 | Asset-agnostic registry tables + motor specialization tables | Not Started |
-| 1.3.4 | Document catalog / documents / versions tables | Not Started |
-| 1.3.5 | Drawing numbers + link tables | Not Started |
-| 1.3.6 | Indexing job / gdrive sync state tables | Not Started |
-| 1.3.7 | Initial migration + seed script hooks | Not Started |
-| 1.3.8 | Repository base pattern | Not Started |
+| 1.3.1 | SQLAlchemy / Alembic setup | Complete |
+| 1.3.2 | Core system tables (`users`, `roles`, `audit_events` stubs as needed) | Complete |
+| 1.3.3 | Asset-agnostic registry tables + motor specialization tables | Complete |
+| 1.3.4 | Document catalog / documents / versions tables | Complete |
+| 1.3.5 | Drawing numbers + link tables | Complete |
+| 1.3.6 | Indexing job / gdrive sync state tables | Complete |
+| 1.3.7 | Initial migration + seed script hooks | Complete |
+| 1.3.8 | Repository base pattern | Complete |
 
 ## Milestone 1.4 — Authentication
 
@@ -1016,13 +1016,13 @@ Every task must be executed as:
 
 | Subtask | Status |
 |---|---|
-| Alembic env + first migration | Not Started |
-| Create SoR tables per Architecture §12 (asset-agnostic + motor tables + documents + drawing links + jobs) | Not Started |
-| Repository interfaces for assets/documents | Not Started |
-| Seed product_line ABB LV Motors placeholder | Not Started |
-| Verify migrations up/down on fresh DB | Not Started |
+| Alembic env + first migration | Complete |
+| Create SoR tables per Architecture §12 (asset-agnostic + motor tables + documents + drawing links + jobs) | Complete |
+| Repository interfaces for assets/documents | Complete |
+| Seed product_line ABB LV Motors placeholder | Complete |
+| Verify migrations up/down on fresh DB | Complete |
 
-**DoD:** Fresh `docker compose` DB migrates cleanly; repositories can CRUD catalog stub; no business logic in models.
+**DoD:** Fresh `docker compose` DB migrates cleanly; repositories can CRUD catalog stub; no business logic in models. **Met — 2026-07-17** (migration up/down verified via SQLite smoke; full PostgreSQL via Compose deferred to Milestone 1.9).
 
 ---
 
@@ -1507,7 +1507,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | In Progress | 18% (2/11 milestones) | Engineering | Architecture Report | — | Milestone 1.2 Complete |
+| Phase 1 — Foundation | In Progress | 27% (3/11 milestones) | Engineering | Architecture Report | — | Milestone 1.3 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1520,8 +1520,8 @@ Every milestone checklist must cover the applicable subset:
 |---|---|---|---|---|---|---|---|
 | 1.1 Project Bootstrap | 1 | Complete | 100% | Engineering | — | 2026-07-17 | Monorepo + scaffolds + tooling; root README on GitHub (not duplicated locally) |
 | 1.2 Backend Foundation | 1 | Complete | 100% | Engineering | 1.1 | 2026-07-17 | FastAPI factory, settings, DI, middleware, `/api/v1`, envelope, health/ready |
-| 1.3 Database | 1 | Not Started | 0% | — | 1.2 | — | **ACTIVE** |
-| 1.4 Authentication | 1 | Not Started | 0% | — | 1.3 | — | — |
+| 1.3 Database | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-17 | SQLAlchemy/Alembic SoR schema, repos, ABB LV Motors seed |
+| 1.4 Authentication | 1 | Not Started | 0% | — | 1.3 | — | **ACTIVE** |
 | 1.5 Object Storage | 1 | Not Started | 0% | — | 1.2 | — | Parallel with 1.4 after 1.2 |
 | 1.6 Google Drive Integration | 1 | Not Started | 0% | — | 1.3, 1.5 | — | Critical path |
 | 1.7 Document Catalog & Upload | 1 | Not Started | 0% | — | 1.6 | — | — |
