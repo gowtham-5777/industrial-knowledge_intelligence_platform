@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
+from app.auth.dependencies import CurrentUserDep, get_current_user
+from app.auth.routes import router as auth_router
 from app.core.dependencies import RequestIdDep, SettingsDep
 from app.core.responses import success_envelope
 
 router = APIRouter()
 
+# Public auth endpoints (login / refresh) + protected /me
+router.include_router(auth_router)
 
+
+# Public smoke probe (unauthenticated)
 @router.get(
     "/ping",
     summary="API version ping",
@@ -28,3 +34,29 @@ def ping(
         },
         request_id=request_id,
     )
+
+
+# Protected surface — future domain routers mount here with auth required.
+protected_router = APIRouter(
+    dependencies=[Depends(get_current_user)],
+    tags=["Protected"],
+)
+
+
+@protected_router.get(
+    "/session/check",
+    summary="Protected session check",
+    description="Requires Bearer access token; used to verify auth middleware.",
+)
+def session_check(user: CurrentUserDep, request_id: RequestIdDep) -> dict:
+    return success_envelope(
+        {
+            "authenticated": True,
+            "user_id": user.id,
+            "email": user.email,
+        },
+        request_id=request_id,
+    )
+
+
+router.include_router(protected_router)

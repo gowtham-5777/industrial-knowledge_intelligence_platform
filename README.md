@@ -189,7 +189,7 @@ Development is **milestone-based** (not day-based). One milestone = one feature 
 | **1.1** Project Bootstrap | Monorepo layout, backend/frontend scaffolds, tooling baselines | Complete |
 | **1.2** Backend Foundation | FastAPI app, settings, DI, middleware, errors, OpenAPI, health | Complete |
 | **1.3** Database | PostgreSQL + Alembic; asset/document/job schemas | Complete |
-| **1.4** Authentication | Login / refresh / me; seeded RBAC roles | Planned |
+| **1.4** Authentication | Login / refresh / me; seeded RBAC roles | Complete |
 | **1.5** Object Storage | Blob/MinIO abstraction; upload/download | Planned |
 | **1.6** Google Drive Integration | Discovery, checkpoints, selective download | Planned |
 | **1.7** Document Catalog & Upload | Catalog upsert; path classification; upload API | Planned |
@@ -389,4 +389,4 @@ MIT License — see `LICENSE` (to be added) or use freely for hackathon evaluati
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, DoD, trackers |
 | [docs/MILESTONE_GIT_WORKFLOW.md](docs/MILESTONE_GIT_WORKFLOW.md) | Git branch / tag / PR protocol |
 
-**Current engineering focus:** Milestone **1.4 — Authentication** (next implementation step; awaiting approval).
+**Current engineering focus:** Milestone **1.5 — Object Storage** (next implementation step; awaiting approval).

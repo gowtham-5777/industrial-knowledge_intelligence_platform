@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.4 — Authentication |
+| **Current Milestone** | Milestone 1.5 — Object Storage |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~5% (3 milestones complete) |
+| **Overall Progress** | ~7% (4 milestones complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.5 — Object Storage |
-| **Last Tracker Update** | 2026-07-17 — Milestone 1.3 Complete; awaiting approval for 1.4 |
+| **Next Milestone After Current** | Milestone 1.6 — Google Drive Integration |
+| **Last Tracker Update** | 2026-07-17 — Milestone 1.4 Complete; awaiting approval for 1.5 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -307,7 +307,7 @@ Phases match Architecture §24 exactly.
 | 1.1 | Project Bootstrap | Complete |
 | 1.2 | Backend Foundation | Complete |
 | 1.3 | Database (PostgreSQL) | Complete |
-| 1.4 | Authentication | Not Started |
+| 1.4 | Authentication | Complete |
 | 1.5 | Object Storage | Not Started |
 | 1.6 | Google Drive Integration | Not Started |
 | 1.7 | Document Catalog & Upload | Not Started |
@@ -436,11 +436,11 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.4.1 | Auth provider choice implementation (Clerk/Auth0 **or** JWT seed users) | Not Started |
-| 1.4.2 | Login / refresh / me endpoints | Not Started |
-| 1.4.3 | Auth middleware protecting `/api/v1` | Not Started |
-| 1.4.4 | Seed roles (PlantOperator … SystemAdmin) | Not Started |
-| 1.4.5 | Frontend auth session wiring | Not Started |
+| 1.4.1 | Auth provider choice implementation (Clerk/Auth0 **or** JWT seed users) | Complete |
+| 1.4.2 | Login / refresh / me endpoints | Complete |
+| 1.4.3 | Auth middleware protecting `/api/v1` | Complete |
+| 1.4.4 | Seed roles (PlantOperator … SystemAdmin) | Complete |
+| 1.4.5 | Frontend auth session wiring | Complete |
 
 ## Milestone 1.5 — Object Storage
 
@@ -1030,11 +1030,13 @@ Every task must be executed as:
 
 ### 1.4 Authentication
 
-- [ ] Choose JWT seed **or** Clerk/Auth0 (hackathon velocity)  
-- [ ] Implement login/refresh/me  
-- [ ] Protect API routes  
-- [ ] Seed RBAC role rows  
-- [ ] Frontend session persists  
+- [x] Choose JWT seed **or** Clerk/Auth0 (hackathon velocity) — **JWT seed chosen**
+- [x] Implement login/refresh/me  
+- [x] Protect API routes  
+- [x] Seed RBAC role rows  
+- [x] Frontend session persists  
+
+**Milestone 1.4 DoD met — 2026-07-17.**
 
 ### 1.5 Storage
 
@@ -1507,7 +1509,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | In Progress | 27% (3/11 milestones) | Engineering | Architecture Report | — | Milestone 1.3 Complete |
+| Phase 1 — Foundation | In Progress | 36% (4/11 milestones) | Engineering | Architecture Report | — | Milestone 1.4 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1521,8 +1523,8 @@ Every milestone checklist must cover the applicable subset:
 | 1.1 Project Bootstrap | 1 | Complete | 100% | Engineering | — | 2026-07-17 | Monorepo + scaffolds + tooling; root README on GitHub (not duplicated locally) |
 | 1.2 Backend Foundation | 1 | Complete | 100% | Engineering | 1.1 | 2026-07-17 | FastAPI factory, settings, DI, middleware, `/api/v1`, envelope, health/ready |
 | 1.3 Database | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-17 | SQLAlchemy/Alembic SoR schema, repos, ABB LV Motors seed |
-| 1.4 Authentication | 1 | Not Started | 0% | — | 1.3 | — | **ACTIVE** |
-| 1.5 Object Storage | 1 | Not Started | 0% | — | 1.2 | — | Parallel with 1.4 after 1.2 |
+| 1.4 Authentication | 1 | Complete | 100% | Engineering | 1.3 | 2026-07-17 | JWT seed login/refresh/me; protected routes; frontend session |
+| 1.5 Object Storage | 1 | Not Started | 0% | — | 1.2 | — | **ACTIVE** |
 | 1.6 Google Drive Integration | 1 | Not Started | 0% | — | 1.3, 1.5 | — | Critical path |
 | 1.7 Document Catalog & Upload | 1 | Not Started | 0% | — | 1.6 | — | — |
 | 1.8 Frontend Shell | 1 | Not Started | 0% | — | 1.1 | — | — |

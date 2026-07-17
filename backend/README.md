@@ -18,6 +18,14 @@
 #   alembic upgrade head
 #   python -m app.db.seed_cli
 #
+# Auth (Milestone 1.4 — JWT seed):
+#   POST /api/v1/auth/login   {"email","password"}
+#   POST /api/v1/auth/refresh {"refresh_token"}
+#   GET  /api/v1/auth/me      Authorization: Bearer <access>
+#   Seeded users (after seed_cli):
+#     admin@example.com / ChangeMeAdmin!       (SystemAdmin)
+#     operator@example.com / ChangeMeOperator! (PlantOperator)
+#
 # Probes:
 #   GET /health
 #   GET /ready

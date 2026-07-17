@@ -21,6 +21,14 @@ OPENAPI_TAGS = [
         "name": "System",
         "description": "Versioned system utilities under `/api/v1`.",
     },
+    {
+        "name": "Auth",
+        "description": "JWT seed authentication (login, refresh, me).",
+    },
+    {
+        "name": "Protected",
+        "description": "Routes that require a Bearer access token.",
+    },
 ]
 
 
