@@ -26,6 +26,15 @@
 #     admin@example.com / ChangeMeAdmin!       (SystemAdmin)
 #     operator@example.com / ChangeMeOperator! (PlantOperator)
 #
+# Object storage (Milestone 1.5 — internal service, no public HTTP API yet):
+#   STORAGE_BACKEND=local|minio|s3|azure
+#   Local default writes under STORAGE_LOCAL_ROOT (.data/storage)
+#   MinIO: set STORAGE_BACKEND=minio + endpoint/keys (Compose arrives in 1.9)
+#   Azure: STORAGE_BACKEND=azure + AZURE_STORAGE_CONNECTION_STRING
+#   from app.storage import get_storage_service
+#   svc = get_storage_service()
+#   svc.upload("docs/demo.pdf", b"%PDF...", content_type="application/pdf")
+#
 # Probes:
 #   GET /health
 #   GET /ready

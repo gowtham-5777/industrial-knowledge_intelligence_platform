@@ -11,6 +11,8 @@ from sqlalchemy.orm import Session
 from app.core.config import Settings, get_settings
 from app.core.middleware import get_request_id
 from app.db.session import get_db
+from app.storage.factory import get_storage_service
+from app.storage.service import StorageService
 
 
 def provide_settings() -> Generator[Settings, None, None]:
@@ -23,6 +25,12 @@ def provide_request_id(request: Request) -> str | None:
     return get_request_id(request)
 
 
+def provide_storage_service() -> StorageService:
+    """Yield the configured object-storage service singleton."""
+    return get_storage_service()
+
+
 SettingsDep = Annotated[Settings, Depends(provide_settings)]
 RequestIdDep = Annotated[str | None, Depends(provide_request_id)]
 DbSessionDep = Annotated[Session, Depends(get_db)]
+StorageServiceDep = Annotated[StorageService, Depends(provide_storage_service)]

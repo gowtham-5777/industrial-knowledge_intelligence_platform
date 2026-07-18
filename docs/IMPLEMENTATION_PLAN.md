@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.5 — Object Storage |
+| **Current Milestone** | Milestone 1.6 — Google Drive Integration |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~7% (4 milestones complete) |
+| **Overall Progress** | ~9% (5 milestones complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.6 — Google Drive Integration |
-| **Last Tracker Update** | 2026-07-17 — Milestone 1.4 Complete; awaiting approval for 1.5 |
+| **Next Milestone After Current** | Milestone 1.7 — Document Catalog & Upload |
+| **Last Tracker Update** | 2026-07-19 — Milestone 1.5 Complete; awaiting approval for 1.6 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -308,7 +308,7 @@ Phases match Architecture §24 exactly.
 | 1.2 | Backend Foundation | Complete |
 | 1.3 | Database (PostgreSQL) | Complete |
 | 1.4 | Authentication | Complete |
-| 1.5 | Object Storage | Not Started |
+| 1.5 | Object Storage | Complete |
 | 1.6 | Google Drive Integration | Not Started |
 | 1.7 | Document Catalog & Upload | Not Started |
 | 1.8 | Frontend Shell | Not Started |
@@ -446,10 +446,10 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.5.1 | Storage abstraction (Azure Blob / MinIO-compatible) | Not Started |
-| 1.5.2 | Upload / download / signed URL operations | Not Started |
-| 1.5.3 | MIME + size validation | Not Started |
-| 1.5.4 | Wire storage settings via env | Not Started |
+| 1.5.1 | Storage abstraction (Azure Blob / MinIO-compatible) | Complete |
+| 1.5.2 | Upload / download / signed URL operations | Complete |
+| 1.5.3 | MIME + size validation | Complete |
+| 1.5.4 | Wire storage settings via env | Complete |
 
 ## Milestone 1.6 — Google Drive Integration
 
@@ -1040,10 +1040,12 @@ Every task must be executed as:
 
 ### 1.5 Storage
 
-- [ ] Storage port + Azure/MinIO adapter  
-- [ ] Upload stream from Drive/manual  
-- [ ] Download / signed URL  
-- [ ] MIME/size validation  
+- [x] Storage port + Azure/MinIO adapter (+ local filesystem for offline/dev)
+- [x] Upload stream from Drive/manual (service API; HTTP upload in 1.7)
+- [x] Download / signed URL
+- [x] MIME/size validation
+
+**Milestone 1.5 DoD met — 2026-07-19.**
 
 ### 1.6 Google Drive
 
@@ -1509,7 +1511,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | In Progress | 36% (4/11 milestones) | Engineering | Architecture Report | — | Milestone 1.4 Complete |
+| Phase 1 — Foundation | In Progress | 45% (5/11 milestones) | Engineering | Architecture Report | — | Milestone 1.5 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1524,8 +1526,8 @@ Every milestone checklist must cover the applicable subset:
 | 1.2 Backend Foundation | 1 | Complete | 100% | Engineering | 1.1 | 2026-07-17 | FastAPI factory, settings, DI, middleware, `/api/v1`, envelope, health/ready |
 | 1.3 Database | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-17 | SQLAlchemy/Alembic SoR schema, repos, ABB LV Motors seed |
 | 1.4 Authentication | 1 | Complete | 100% | Engineering | 1.3 | 2026-07-17 | JWT seed login/refresh/me; protected routes; frontend session |
-| 1.5 Object Storage | 1 | Not Started | 0% | — | 1.2 | — | **ACTIVE** |
-| 1.6 Google Drive Integration | 1 | Not Started | 0% | — | 1.3, 1.5 | — | Critical path |
+| 1.5 Object Storage | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-19 | Port + local/MinIO/Azure adapters; upload/download/signed URL; MIME/size |
+| 1.6 Google Drive Integration | 1 | Not Started | 0% | — | 1.3, 1.5 | — | **ACTIVE** |
 | 1.7 Document Catalog & Upload | 1 | Not Started | 0% | — | 1.6 | — | — |
 | 1.8 Frontend Shell | 1 | Not Started | 0% | — | 1.1 | — | — |
 | 1.9 Docker Compose Stack | 1 | Not Started | 0% | — | 1.2, 1.3 | — | — |

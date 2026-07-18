@@ -48,6 +48,21 @@ class Settings(BaseSettings):
     jwt_access_token_expire_minutes: int = 60
     jwt_refresh_token_expire_days: int = 7
 
+    # --- Object storage (Azure Blob / MinIO / local) ---
+    storage_backend: Literal["local", "minio", "s3", "azure"] = "local"
+    storage_endpoint: str = "localhost:9000"
+    storage_access_key: str = "minioadmin"
+    storage_secret_key: str = "minioadmin"
+    storage_bucket: str = "industrial-brain"
+    storage_use_ssl: bool = False
+    storage_region: str = "us-east-1"
+    storage_local_root: str = ".data/storage"
+    storage_max_upload_bytes: int = 100 * 1024 * 1024
+    # Comma-separated; empty → built-in industrial MIME allow-list
+    storage_allowed_mime_types: str = ""
+    azure_storage_connection_string: str = ""
+    azure_storage_container: str = "industrial-brain"
+
     # --- Optional integrations (wired in later milestones) ---
     openai_api_key: str = ""
     google_api_key: str = ""
@@ -92,6 +107,15 @@ class Settings(BaseSettings):
     def cors_origin_list(self) -> list[str]:
         origins = self.cors_origins.split(",")
         return [origin.strip() for origin in origins if origin.strip()]
+
+    @property
+    def storage_allowed_mime_types_set(self) -> frozenset[str]:
+        raw = self.storage_allowed_mime_types.strip()
+        if not raw:
+            return frozenset()
+        return frozenset(
+            part.strip().lower() for part in raw.split(",") if part.strip()
+        )
 
 
 @lru_cache

@@ -44,6 +44,7 @@ pnpm-debug.log*
 # Docker / local data volumes
 *.log
 docker-data/
+.data/
 
 # IDE / OS
 .idea/
