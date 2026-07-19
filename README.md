@@ -160,6 +160,7 @@ Multi-domain industrial corpus on **Google Drive** (~**27,300** documents).
 ├── frontend/                        # Next.js enterprise shell
 ├── docker/                          # Dockerfiles + corpus placeholder
 ├── docker-compose.yml               # Local full stack (Milestone 1.9)
+├── scripts/                         # Ops helpers (Phase 1 validation gate)
 ├── .gitignore
 └── README.md
 ```
@@ -197,7 +198,7 @@ Development is **milestone-based** (not day-based). One milestone = one feature 
 | **1.8** Frontend Shell | Next.js nav shell; enterprise sidebar routes | Complete |
 | **1.9** Docker Compose Stack | API, web, Postgres, Redis, Neo4j, Qdrant, storage | Complete |
 | **1.10** Logging Foundation | Structured JSON logs + correlation IDs | Complete |
-| **1.11** Foundation Validation Gate | Phase 1 DoD + checklist sign-off | Planned |
+| **1.11** Foundation Validation Gate | Phase 1 DoD + checklist sign-off | Complete |
 
 ### Phase 2 — Document Intelligence
 
@@ -306,6 +307,12 @@ docker compose down          # keep volumes
 docker compose down -v       # wipe Postgres / MinIO / Neo4j / Qdrant / Redis data
 ```
 
+**Phase 1 validation gate (Milestone 1.11):** with the stack up:
+
+```bash
+python scripts/validate_phase1.py
+```
+
 ---
 
 ## Running the Project
@@ -408,4 +415,4 @@ MIT License — see `LICENSE` (to be added) or use freely for hackathon evaluati
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, DoD, trackers |
 | [docs/MILESTONE_GIT_WORKFLOW.md](docs/MILESTONE_GIT_WORKFLOW.md) | Git branch / tag / PR protocol |
 
-**Current engineering focus:** Milestone **1.11 — Foundation Validation Gate** (next implementation step; awaiting approval).
+**Current engineering focus:** Milestone **2.1 — Parsing & OCR Pipeline** (next implementation step; awaiting approval). Phase 1 Foundation is **Complete**.
