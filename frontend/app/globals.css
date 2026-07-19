@@ -3,19 +3,54 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f6f8;
+  --foreground: #1a2332;
+  --card: #ffffff;
+  --card-foreground: #1a2332;
+  --muted: #e8edf2;
+  --muted-foreground: #5b6b7c;
+  --border: #d3dbe4;
+  --sidebar: #eef2f6;
+  --sidebar-foreground: #1a2332;
+  --sidebar-accent: #dce8ef;
+  --sidebar-accent-foreground: #0f1a24;
+  --accent: #0d7377;
+  --accent-foreground: #f5fbfb;
+  --secondary: #e2e8ee;
+  --secondary-foreground: #1a2332;
+  --destructive: #b42318;
+  --destructive-foreground: #fff7f6;
+  --ring: #0d7377;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --background: #0c1218;
+  --foreground: #e7eef5;
+  --card: #131b24;
+  --card-foreground: #e7eef5;
+  --muted: #1a2430;
+  --muted-foreground: #93a4b5;
+  --border: #243140;
+  --sidebar: #0a1016;
+  --sidebar-foreground: #e7eef5;
+  --sidebar-accent: #16303a;
+  --sidebar-accent-foreground: #e8f6f6;
+  --accent: #2dd4bf;
+  --accent-foreground: #042f2e;
+  --secondary: #1a2430;
+  --secondary-foreground: #e7eef5;
+  --destructive: #f97066;
+  --destructive-foreground: #2a0a08;
+  --ring: #2dd4bf;
+}
+
+@layer base {
+  * {
+    @apply border-border;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+  }
 }

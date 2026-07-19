@@ -6,10 +6,13 @@ import {
   type AuthUser,
   clearSession,
   fetchMe,
+  getAccessToken,
   getStoredUser,
   loginRequest,
   saveSession,
 } from "@/lib/auth";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -20,8 +23,14 @@ export default function LoginPage() {
   const [user, setUser] = useState<AuthUser | null>(null);
 
   useEffect(() => {
-    setUser(getStoredUser());
-  }, []);
+    const token = getAccessToken();
+    const stored = getStoredUser();
+    if (token && stored) {
+      router.replace("/dashboard");
+      return;
+    }
+    setUser(stored);
+  }, [router]);
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -39,7 +48,7 @@ export default function LoginPage() {
       const me = await fetchMe();
       saveSession(tokens, me);
       setUser(me);
-      router.push("/");
+      router.push("/dashboard");
     } catch (err) {
       clearSession();
       setError(err instanceof Error ? err.message : "Login failed");
@@ -49,21 +58,30 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-zinc-950 px-6 text-zinc-100">
-      <div className="w-full max-w-md">
-        <p className="text-sm uppercase tracking-[0.2em] text-zinc-500">
+    <main className="relative flex min-h-screen flex-col items-center justify-center bg-background px-6 text-foreground">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 50% at 50% -20%, color-mix(in oklab, var(--accent) 22%, transparent), transparent)",
+        }}
+      />
+      <div className="absolute right-4 top-4">
+        <ThemeToggle />
+      </div>
+      <div className="relative w-full max-w-md rounded-lg border border-border bg-card p-6 shadow-sm">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
           Industrial Brain AI
         </p>
         <h1 className="mt-3 text-2xl font-semibold tracking-tight">Sign in</h1>
-        <p className="mt-2 text-sm text-zinc-400">
-          JWT seed auth for hackathon. Seeded admin and operator accounts are
-          available after{" "}
-          <code className="text-zinc-300">python -m app.db.seed_cli</code>.
+        <p className="mt-2 text-sm text-muted-foreground">
+          JWT seed auth for the hackathon. Seeded admin and operator accounts
+          are available after backend seed.
         </p>
 
         {user ? (
-          <p className="mt-6 rounded border border-zinc-800 bg-zinc-900/60 p-3 text-sm text-zinc-300">
-            Already signed in as {user.email}.{" "}
+          <p className="mt-6 rounded-md border border-border bg-muted/40 p-3 text-sm text-muted-foreground">
+            Session remnant for {user.email}.{" "}
             <button
               type="button"
               className="underline"
@@ -72,16 +90,16 @@ export default function LoginPage() {
                 setUser(null);
               }}
             >
-              Sign out
+              Clear
             </button>
           </p>
         ) : null}
 
         <form onSubmit={onSubmit} className="mt-8 space-y-4">
           <label className="block text-sm">
-            <span className="text-zinc-400">Email</span>
+            <span className="text-muted-foreground">Email</span>
             <input
-              className="mt-1 w-full rounded border border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-100 outline-none focus:border-zinc-500"
+              className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-foreground outline-none ring-ring focus:ring-2"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -90,9 +108,9 @@ export default function LoginPage() {
             />
           </label>
           <label className="block text-sm">
-            <span className="text-zinc-400">Password</span>
+            <span className="text-muted-foreground">Password</span>
             <input
-              className="mt-1 w-full rounded border border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-100 outline-none focus:border-zinc-500"
+              className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-foreground outline-none ring-ring focus:ring-2"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -100,14 +118,10 @@ export default function LoginPage() {
               autoComplete="current-password"
             />
           </label>
-          {error ? <p className="text-sm text-red-400">{error}</p> : null}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded bg-zinc-100 px-3 py-2 text-sm font-medium text-zinc-900 disabled:opacity-60"
-          >
+          {error ? <p className="text-sm text-destructive">{error}</p> : null}
+          <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Signing in…" : "Sign in"}
-          </button>
+          </Button>
         </form>
       </div>
     </main>

@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.8 — Frontend Shell |
+| **Current Milestone** | Milestone 1.9 — Docker Compose Stack |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~13% (7 milestones complete) |
+| **Overall Progress** | ~15% (8 milestones complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.9 — Docker Compose Stack |
-| **Last Tracker Update** | 2026-07-19 — Milestone 1.7 Complete; awaiting approval for 1.8 |
+| **Next Milestone After Current** | Milestone 1.10 — Logging & Observability Foundation |
+| **Last Tracker Update** | 2026-07-19 — Milestone 1.8 Complete; awaiting approval for 1.9 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -311,7 +311,7 @@ Phases match Architecture §24 exactly.
 | 1.5 | Object Storage | Complete |
 | 1.6 | Google Drive Integration | Complete |
 | 1.7 | Document Catalog & Upload | Complete |
-| 1.8 | Frontend Shell | Not Started |
+| 1.8 | Frontend Shell | Complete |
 | 1.9 | Docker Compose Stack | Not Started |
 | 1.10 | Logging & Observability Foundation | Not Started |
 | 1.11 | Foundation Validation Gate | Not Started |
@@ -477,12 +477,12 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.8.1 | Next.js App Router + Tailwind + shadcn/ui baseline | Not Started |
-| 1.8.2 | Enterprise sidebar navigation (Architecture §10 routes) | Not Started |
-| 1.8.3 | App layout, theme tokens, dark/light support | Not Started |
-| 1.8.4 | API client + TanStack Query setup | Not Started |
-| 1.8.5 | Placeholder pages for primary nav items (no fake business logic) | Not Started |
-| 1.8.6 | Auth-gated app shell | Not Started |
+| 1.8.1 | Next.js App Router + Tailwind + shadcn/ui baseline | Complete |
+| 1.8.2 | Enterprise sidebar navigation (Architecture §10 routes) | Complete |
+| 1.8.3 | App layout, theme tokens, dark/light support | Complete |
+| 1.8.4 | API client + TanStack Query setup | Complete |
+| 1.8.5 | Placeholder pages for primary nav items (no fake business logic) | Complete |
+| 1.8.6 | Auth-gated app shell | Complete |
 
 ## Milestone 1.9 — Docker Compose Stack
 
@@ -1068,10 +1068,12 @@ Every task must be executed as:
 
 ### 1.8 Frontend Shell
 
-- [ ] Sidebar matches Architecture nav  
-- [ ] Placeholder routes render without crashing  
-- [ ] Auth gate works  
-- [ ] API client authenticated  
+- [x] Sidebar matches Architecture nav  
+- [x] Placeholder routes render without crashing  
+- [x] Auth gate works  
+- [x] API client authenticated  
+
+**Milestone 1.8 DoD met — 2026-07-19** (enterprise shell + auth gate + Query client).
 
 ### 1.9 Docker
 
@@ -1515,7 +1517,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | In Progress | 64% (7/11 milestones) | Engineering | Architecture Report | — | Milestone 1.7 Complete |
+| Phase 1 — Foundation | In Progress | 73% (8/11 milestones) | Engineering | Architecture Report | — | Milestone 1.8 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1533,8 +1535,8 @@ Every milestone checklist must cover the applicable subset:
 | 1.5 Object Storage | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-19 | Port + local/MinIO/Azure adapters; upload/download/signed URL; MIME/size |
 | 1.6 Google Drive Integration | 1 | Complete | 100% | Engineering | 1.3, 1.5 | 2026-07-19 | Local corpus discovery + checkpoint + selective download + sync API |
 | 1.7 Document Catalog & Upload | 1 | Complete | 100% | Engineering | 1.6 | 2026-07-19 | Catalog list/stats/get; upload; classification; drawing/asset stubs |
-| 1.8 Frontend Shell | 1 | Not Started | 0% | — | 1.1 | — | **ACTIVE** |
-| 1.9 Docker Compose Stack | 1 | Not Started | 0% | — | 1.2, 1.3 | — | — |
+| 1.8 Frontend Shell | 1 | Complete | 100% | Engineering | 1.1, 1.4 | 2026-07-19 | App Router shell; §10 sidebar; theme; Query; auth gate; placeholders |
+| 1.9 Docker Compose Stack | 1 | Not Started | 0% | — | 1.2, 1.3 | — | **ACTIVE** |
 | 1.10 Logging Foundation | 1 | Not Started | 0% | — | 1.2 | — | — |
 | 1.11 Foundation Validation Gate | 1 | Not Started | 0% | — | 1.1–1.10 | — | — |
 | 2.1 Parsing & OCR | 2 | Not Started | 0% | — | Phase 1 | — | — |
