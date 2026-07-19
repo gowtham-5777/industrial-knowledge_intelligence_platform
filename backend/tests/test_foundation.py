@@ -5,6 +5,7 @@ from __future__ import annotations
 import pytest
 from app.core.config import Settings, clear_settings_cache
 from app.core.exceptions import ErrorCode, NotFoundError
+from app.db.session import clear_engine_cache
 from app.main import create_app
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
@@ -13,11 +14,17 @@ from pydantic import ValidationError
 @pytest.fixture()
 def client(monkeypatch: pytest.MonkeyPatch) -> TestClient:
     monkeypatch.setenv("APP_ENV", "test")
+    monkeypatch.setenv(
+        "DATABASE_URL",
+        "sqlite:///:memory:",
+    )
     clear_settings_cache()
-    app = create_app(Settings(app_env="test"))
+    clear_engine_cache()
+    app = create_app(Settings(app_env="test", database_url="sqlite:///:memory:"))
     with TestClient(app) as test_client:
         yield test_client
     clear_settings_cache()
+    clear_engine_cache()
 
 
 def test_health_ok(client: TestClient) -> None:

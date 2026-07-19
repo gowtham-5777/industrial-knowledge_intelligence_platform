@@ -8,11 +8,14 @@ from app.auth.dependencies import CurrentUserDep, get_current_user
 from app.auth.routes import router as auth_router
 from app.core.dependencies import RequestIdDep, SettingsDep
 from app.core.responses import success_envelope
+from app.gdrive.routes import router as sync_router
 
 router = APIRouter()
 
 # Public auth endpoints (login / refresh) + protected /me
 router.include_router(auth_router)
+# Corpus sync (local/Drive-shaped) — authenticated
+router.include_router(sync_router)
 
 
 # Public smoke probe (unauthenticated)

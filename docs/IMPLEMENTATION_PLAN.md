@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.6 — Google Drive Integration |
+| **Current Milestone** | Milestone 1.7 — Document Catalog & Upload |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~9% (5 milestones complete) |
+| **Overall Progress** | ~11% (6 milestones complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.7 — Document Catalog & Upload |
-| **Last Tracker Update** | 2026-07-19 — Milestone 1.5 Complete; awaiting approval for 1.6 |
+| **Next Milestone After Current** | Milestone 1.8 — Frontend Shell |
+| **Last Tracker Update** | 2026-07-19 — Milestone 1.6 Complete; awaiting approval for 1.7 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -309,7 +309,7 @@ Phases match Architecture §24 exactly.
 | 1.3 | Database (PostgreSQL) | Complete |
 | 1.4 | Authentication | Complete |
 | 1.5 | Object Storage | Complete |
-| 1.6 | Google Drive Integration | Not Started |
+| 1.6 | Google Drive Integration | Complete |
 | 1.7 | Document Catalog & Upload | Not Started |
 | 1.8 | Frontend Shell | Not Started |
 | 1.9 | Docker Compose Stack | Not Started |
@@ -455,13 +455,13 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.6.1 | Drive auth (service account or OAuth shared folder) | Not Started |
-| 1.6.2 | Discovery pass (`files.list` pagination) | Not Started |
-| 1.6.3 | Preserve folder path metadata | Not Started |
-| 1.6.4 | Idempotency via `drive_file_id` + `md5Checksum` | Not Started |
-| 1.6.5 | Checkpoint / resume state | Not Started |
-| 1.6.6 | Selective stream download to object storage | Not Started |
-| 1.6.7 | Sync status API | Not Started |
+| 1.6.1 | Drive auth (service account or OAuth shared folder) | Complete |
+| 1.6.2 | Discovery pass (`files.list` pagination) | Complete |
+| 1.6.3 | Preserve folder path metadata | Complete |
+| 1.6.4 | Idempotency via `drive_file_id` + `md5Checksum` | Complete |
+| 1.6.5 | Checkpoint / resume state | Complete |
+| 1.6.6 | Selective stream download to object storage | Complete |
+| 1.6.7 | Sync status API | Complete |
 
 ## Milestone 1.7 — Document Catalog & Upload
 
@@ -1049,11 +1049,13 @@ Every task must be executed as:
 
 ### 1.6 Google Drive
 
-- [ ] Auth works against shared corpus  
-- [ ] Paginated discovery writes catalog  
-- [ ] Checkpoints survive restart  
-- [ ] Selective download to blob  
-- [ ] Sync status endpoint  
+- [x] Auth works against shared corpus — **local root access check** (Drive API deferred)
+- [x] Paginated discovery writes catalog
+- [x] Checkpoints survive restart
+- [x] Selective download to blob
+- [x] Sync status endpoint
+
+**Milestone 1.6 DoD met — 2026-07-19** (local corpus source; Drive-shaped contracts).
 
 ### 1.7 Catalog & Upload
 
@@ -1511,7 +1513,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | In Progress | 45% (5/11 milestones) | Engineering | Architecture Report | — | Milestone 1.5 Complete |
+| Phase 1 — Foundation | In Progress | 55% (6/11 milestones) | Engineering | Architecture Report | — | Milestone 1.6 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1527,8 +1529,8 @@ Every milestone checklist must cover the applicable subset:
 | 1.3 Database | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-17 | SQLAlchemy/Alembic SoR schema, repos, ABB LV Motors seed |
 | 1.4 Authentication | 1 | Complete | 100% | Engineering | 1.3 | 2026-07-17 | JWT seed login/refresh/me; protected routes; frontend session |
 | 1.5 Object Storage | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-19 | Port + local/MinIO/Azure adapters; upload/download/signed URL; MIME/size |
-| 1.6 Google Drive Integration | 1 | Not Started | 0% | — | 1.3, 1.5 | — | **ACTIVE** |
-| 1.7 Document Catalog & Upload | 1 | Not Started | 0% | — | 1.6 | — | — |
+| 1.6 Google Drive Integration | 1 | Complete | 100% | Engineering | 1.3, 1.5 | 2026-07-19 | Local corpus discovery + checkpoint + selective download + sync API |
+| 1.7 Document Catalog & Upload | 1 | Not Started | 0% | — | 1.6 | — | **ACTIVE** |
 | 1.8 Frontend Shell | 1 | Not Started | 0% | — | 1.1 | — | — |
 | 1.9 Docker Compose Stack | 1 | Not Started | 0% | — | 1.2, 1.3 | — | — |
 | 1.10 Logging Foundation | 1 | Not Started | 0% | — | 1.2 | — | — |

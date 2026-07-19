@@ -35,6 +35,15 @@
 #   svc = get_storage_service()
 #   svc.upload("docs/demo.pdf", b"%PDF...", content_type="application/pdf")
 #
+# Corpus sync (Milestone 1.6 — local filesystem source):
+#   Set CORPUS_SOURCE=local and CORPUS_LOCAL_ROOT=<dataset path>
+#   POST /api/v1/sync/start   Authorization: Bearer <access>
+#        {"mode":"discover"|"download"|"discover_and_download"}
+#   GET  /api/v1/sync/status
+#   GET  /api/v1/sync/auth/check
+#   Discovery is metadata-only; selective download copies priority Motors files
+#   into object storage (does NOT copy the full multi-GB corpus).
+#
 # Probes:
 #   GET /health
 #   GET /ready
