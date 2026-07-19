@@ -1,4 +1,4 @@
-"""HTTP middleware: request ID correlation and process timing.
+"""HTTP middleware: request ID correlation, timing, access logs, metrics.
 
 Implemented as pure ASGI middleware (not BaseHTTPMiddleware) so FastAPI
 exception handlers remain reachable for route errors.
@@ -12,10 +12,22 @@ import uuid
 from starlette.requests import Request
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
+from app.observability.context import (
+    clear_context,
+    set_request_id,
+)
+from app.observability.context import (
+    get_request_id as current_request_id,
+)
+from app.observability.logging import get_logger
+from app.observability.metrics import get_request_metrics
+
 REQUEST_ID_HEADER = "X-Request-ID"
 PROCESS_TIME_HEADER = "X-Process-Time"
 REQUEST_ID_STATE_KEY = "request_id"
 PROCESS_TIME_STATE_KEY = "process_time_ms"
+
+_access_logger = get_logger("app.access")
 
 
 def get_request_id(request: Request) -> str | None:
@@ -31,7 +43,11 @@ def _header_value(scope: Scope, name: bytes) -> str | None:
 
 
 class RequestIdMiddleware:
-    """Ensure every request/response carries an ``X-Request-ID``."""
+    """Ensure every request/response carries an ``X-Request-ID``.
+
+    Also binds the ID into a contextvar so structured logs include
+    ``request_id`` without threading it through every call site.
+    """
 
     def __init__(self, app: ASGIApp) -> None:
         self.app = app
@@ -44,6 +60,7 @@ class RequestIdMiddleware:
         request_id = _header_value(scope, b"x-request-id") or str(uuid.uuid4())
         request = Request(scope)
         setattr(request.state, REQUEST_ID_STATE_KEY, request_id)
+        set_request_id(request_id)
 
         async def send_with_request_id(message: Message) -> None:
             if message["type"] == "http.response.start":
@@ -52,11 +69,14 @@ class RequestIdMiddleware:
                 message = {**message, "headers": headers}
             await send(message)
 
-        await self.app(scope, receive, send_with_request_id)
+        try:
+            await self.app(scope, receive, send_with_request_id)
+        finally:
+            clear_context()
 
 
 class TimingMiddleware:
-    """Measure request duration and expose ``X-Process-Time`` (seconds)."""
+    """Measure duration, emit access log, and record latency metrics."""
 
     def __init__(self, app: ASGIApp) -> None:
         self.app = app
@@ -67,9 +87,11 @@ class TimingMiddleware:
             return
 
         started = time.perf_counter()
+        status_code_holder = {"code": 500}
 
         async def send_with_timing(message: Message) -> None:
             if message["type"] == "http.response.start":
+                status_code_holder["code"] = int(message.get("status", 500))
                 elapsed_ms = (time.perf_counter() - started) * 1000.0
                 request = Request(scope)
                 setattr(request.state, PROCESS_TIME_STATE_KEY, elapsed_ms)
@@ -79,4 +101,26 @@ class TimingMiddleware:
                 message = {**message, "headers": headers}
             await send(message)
 
-        await self.app(scope, receive, send_with_timing)
+        try:
+            await self.app(scope, receive, send_with_timing)
+        finally:
+            elapsed_ms = (time.perf_counter() - started) * 1000.0
+            method = scope.get("method", "GET")
+            path = scope.get("path", "/")
+            status = status_code_holder["code"]
+            get_request_metrics().record(
+                method=method,
+                path=path,
+                status_code=status,
+                latency_ms=elapsed_ms,
+            )
+            extra: dict = {
+                "http_method": method,
+                "http_path": path,
+                "http_status": status,
+                "latency_ms": round(elapsed_ms, 3),
+            }
+            rid = current_request_id()
+            if rid:
+                extra["request_id"] = rid
+            _access_logger.info("request completed", extra=extra)

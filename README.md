@@ -196,7 +196,7 @@ Development is **milestone-based** (not day-based). One milestone = one feature 
 | **1.7** Document Catalog & Upload | Catalog upsert; path classification; upload API | Complete |
 | **1.8** Frontend Shell | Next.js nav shell; enterprise sidebar routes | Complete |
 | **1.9** Docker Compose Stack | API, web, Postgres, Redis, Neo4j, Qdrant, storage | Complete |
-| **1.10** Logging Foundation | Structured JSON logs + correlation IDs | Planned |
+| **1.10** Logging Foundation | Structured JSON logs + correlation IDs | Complete |
 | **1.11** Foundation Validation Gate | Phase 1 DoD + checklist sign-off | Planned |
 
 ### Phase 2 — Document Intelligence
@@ -408,4 +408,4 @@ MIT License — see `LICENSE` (to be added) or use freely for hackathon evaluati
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, DoD, trackers |
 | [docs/MILESTONE_GIT_WORKFLOW.md](docs/MILESTONE_GIT_WORKFLOW.md) | Git branch / tag / PR protocol |
 
-**Current engineering focus:** Milestone **1.10 — Logging & Observability Foundation** (next implementation step; awaiting approval).
+**Current engineering focus:** Milestone **1.11 — Foundation Validation Gate** (next implementation step; awaiting approval).

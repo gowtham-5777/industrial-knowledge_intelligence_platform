@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.10 — Logging & Observability Foundation |
+| **Current Milestone** | Milestone 1.11 — Foundation Validation Gate |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~16% (9 milestones complete) |
+| **Overall Progress** | ~18% (10 milestones complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.11 — Foundation Validation Gate |
-| **Last Tracker Update** | 2026-07-20 — Milestone 1.9 Complete; awaiting approval for 1.10 |
+| **Next Milestone After Current** | Phase 2 — Document Intelligence (after 1.11 gate) |
+| **Last Tracker Update** | 2026-07-20 — Milestone 1.10 Complete; awaiting approval for 1.11 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -313,7 +313,7 @@ Phases match Architecture §24 exactly.
 | 1.7 | Document Catalog & Upload | Complete |
 | 1.8 | Frontend Shell | Complete |
 | 1.9 | Docker Compose Stack | Complete |
-| 1.10 | Logging & Observability Foundation | Not Started |
+| 1.10 | Logging & Observability Foundation | Complete |
 | 1.11 | Foundation Validation Gate | Not Started |
 
 ## Phase 2 — Document Intelligence
@@ -498,10 +498,10 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.10.1 | Structured JSON logging | Not Started |
-| 1.10.2 | Request correlation IDs | Not Started |
-| 1.10.3 | Module logger conventions | Not Started |
-| 1.10.4 | Basic metrics hooks (request latency counters) | Not Started |
+| 1.10.1 | Structured JSON logging | Complete |
+| 1.10.2 | Request correlation IDs | Complete |
+| 1.10.3 | Module logger conventions | Complete |
+| 1.10.4 | Basic metrics hooks (request latency counters) | Complete |
 
 ## Milestone 1.11 — Foundation Validation Gate
 
@@ -1085,9 +1085,11 @@ Every task must be executed as:
 
 ### 1.10 Logging
 
-- [ ] JSON logs with request_id  
-- [ ] No `print()` in app code  
-- [ ] Pipeline-ready logger names by module  
+- [x] JSON logs with request_id
+- [x] No `print()` in app code
+- [x] Pipeline-ready logger names by module
+
+**Milestone 1.10 DoD met — 2026-07-20** (JSON logging + correlation IDs + latency metrics hooks).
 
 ### 1.11 Gate
 
@@ -1519,7 +1521,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | In Progress | 82% (9/11 milestones) | Engineering | Architecture Report | — | Milestone 1.9 Complete |
+| Phase 1 — Foundation | In Progress | 91% (10/11 milestones) | Engineering | Architecture Report | — | Milestone 1.10 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1539,8 +1541,8 @@ Every milestone checklist must cover the applicable subset:
 | 1.7 Document Catalog & Upload | 1 | Complete | 100% | Engineering | 1.6 | 2026-07-19 | Catalog list/stats/get; upload; classification; drawing/asset stubs |
 | 1.8 Frontend Shell | 1 | Complete | 100% | Engineering | 1.1, 1.4 | 2026-07-19 | App Router shell; §10 sidebar; theme; Query; auth gate; placeholders |
 | 1.9 Docker Compose Stack | 1 | Complete | 100% | Engineering | 1.2, 1.3, 1.8 | 2026-07-20 | Compose: api/web/pg/redis/minio/neo4j/qdrant; volumes; README boot |
-| 1.10 Logging Foundation | 1 | Not Started | 0% | — | 1.2 | — | **ACTIVE** |
-| 1.11 Foundation Validation Gate | 1 | Not Started | 0% | — | 1.1–1.10 | — | — |
+| 1.10 Logging Foundation | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-20 | JSON logs; request_id contextvars; get_logger; latency counters |
+| 1.11 Foundation Validation Gate | 1 | Not Started | 0% | — | 1.1–1.10 | — | **ACTIVE** |
 | 2.1 Parsing & OCR | 2 | Not Started | 0% | — | Phase 1 | — | — |
 | 2.2 Metadata & Entity Extraction | 2 | Not Started | 0% | — | 2.1 | — | — |
 | 2.3 Chunking | 2 | Not Started | 0% | — | 2.1 | — | — |
