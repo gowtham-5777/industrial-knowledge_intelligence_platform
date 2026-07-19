@@ -10,7 +10,11 @@
 #   copy ..\.env.example ..\.env    # Windows
 #   # cp ../.env.example ../.env    # macOS / Linux
 #
-# Run API (Milestone 1.2+):
+# Full stack (Milestone 1.9 — from repo root):
+#   cp .env.example .env
+#   docker compose up --build
+#
+# Run API only (Milestone 1.2+, host Python):
 #   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 #
 # Database (Milestone 1.3):
@@ -29,7 +33,7 @@
 # Object storage (Milestone 1.5 — internal service, no public HTTP API yet):
 #   STORAGE_BACKEND=local|minio|s3|azure
 #   Local default writes under STORAGE_LOCAL_ROOT (.data/storage)
-#   MinIO: set STORAGE_BACKEND=minio + endpoint/keys (Compose arrives in 1.9)
+#   MinIO: set STORAGE_BACKEND=minio + endpoint/keys (or use docker compose)
 #   Azure: STORAGE_BACKEND=azure + AZURE_STORAGE_CONNECTION_STRING
 #   from app.storage import get_storage_service
 #   svc = get_storage_service()

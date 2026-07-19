@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.9 — Docker Compose Stack |
+| **Current Milestone** | Milestone 1.10 — Logging & Observability Foundation |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~15% (8 milestones complete) |
+| **Overall Progress** | ~16% (9 milestones complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.10 — Logging & Observability Foundation |
-| **Last Tracker Update** | 2026-07-19 — Milestone 1.8 Complete; awaiting approval for 1.9 |
+| **Next Milestone After Current** | Milestone 1.11 — Foundation Validation Gate |
+| **Last Tracker Update** | 2026-07-20 — Milestone 1.9 Complete; awaiting approval for 1.10 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -312,7 +312,7 @@ Phases match Architecture §24 exactly.
 | 1.6 | Google Drive Integration | Complete |
 | 1.7 | Document Catalog & Upload | Complete |
 | 1.8 | Frontend Shell | Complete |
-| 1.9 | Docker Compose Stack | Not Started |
+| 1.9 | Docker Compose Stack | Complete |
 | 1.10 | Logging & Observability Foundation | Not Started |
 | 1.11 | Foundation Validation Gate | Not Started |
 
@@ -488,11 +488,11 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.9.1 | Dockerfile for API | Not Started |
-| 1.9.2 | Dockerfile for frontend (dev + prod targets as needed) | Not Started |
-| 1.9.3 | Compose services: api, web, postgres, redis, minio/blob emulator, neo4j, qdrant | Not Started |
-| 1.9.4 | Volume + network configuration | Not Started |
-| 1.9.5 | One-command local boot documentation in README | Not Started |
+| 1.9.1 | Dockerfile for API | Complete |
+| 1.9.2 | Dockerfile for frontend (dev + prod targets as needed) | Complete |
+| 1.9.3 | Compose services: api, web, postgres, redis, minio/blob emulator, neo4j, qdrant | Complete |
+| 1.9.4 | Volume + network configuration | Complete |
+| 1.9.5 | One-command local boot documentation in README | Complete |
 
 ## Milestone 1.10 — Logging & Observability Foundation
 
@@ -1077,9 +1077,11 @@ Every task must be executed as:
 
 ### 1.9 Docker
 
-- [ ] `docker compose up` starts dependencies  
-- [ ] API + web reachable  
-- [ ] Volumes persist PG/Qdrant/Neo4j  
+- [x] `docker compose up` starts dependencies
+- [x] API + web reachable
+- [x] Volumes persist PG/Qdrant/Neo4j
+
+**Milestone 1.9 DoD met — 2026-07-20** (Compose stack + Dockerfiles + one-command boot docs).
 
 ### 1.10 Logging
 
@@ -1517,7 +1519,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | In Progress | 73% (8/11 milestones) | Engineering | Architecture Report | — | Milestone 1.8 Complete |
+| Phase 1 — Foundation | In Progress | 82% (9/11 milestones) | Engineering | Architecture Report | — | Milestone 1.9 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1536,8 +1538,8 @@ Every milestone checklist must cover the applicable subset:
 | 1.6 Google Drive Integration | 1 | Complete | 100% | Engineering | 1.3, 1.5 | 2026-07-19 | Local corpus discovery + checkpoint + selective download + sync API |
 | 1.7 Document Catalog & Upload | 1 | Complete | 100% | Engineering | 1.6 | 2026-07-19 | Catalog list/stats/get; upload; classification; drawing/asset stubs |
 | 1.8 Frontend Shell | 1 | Complete | 100% | Engineering | 1.1, 1.4 | 2026-07-19 | App Router shell; §10 sidebar; theme; Query; auth gate; placeholders |
-| 1.9 Docker Compose Stack | 1 | Not Started | 0% | — | 1.2, 1.3 | — | **ACTIVE** |
-| 1.10 Logging Foundation | 1 | Not Started | 0% | — | 1.2 | — | — |
+| 1.9 Docker Compose Stack | 1 | Complete | 100% | Engineering | 1.2, 1.3, 1.8 | 2026-07-20 | Compose: api/web/pg/redis/minio/neo4j/qdrant; volumes; README boot |
+| 1.10 Logging Foundation | 1 | Not Started | 0% | — | 1.2 | — | **ACTIVE** |
 | 1.11 Foundation Validation Gate | 1 | Not Started | 0% | — | 1.1–1.10 | — | — |
 | 2.1 Parsing & OCR | 2 | Not Started | 0% | — | Phase 1 | — | — |
 | 2.2 Metadata & Entity Extraction | 2 | Not Started | 0% | — | 2.1 | — | — |
