@@ -77,6 +77,10 @@ class Settings(BaseSettings):
     google_api_key: str = ""
     anthropic_api_key: str = ""
 
+    # --- Logging / observability (Milestone 1.10) ---
+    log_level: str = "INFO"
+    log_json: bool = True
+
     debug: bool = Field(default=False)
 
     @field_validator("cors_origins", mode="before")

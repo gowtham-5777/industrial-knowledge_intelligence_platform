@@ -10,6 +10,9 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from app.core.exceptions import AppError, ErrorCode
 from app.core.middleware import REQUEST_ID_HEADER, get_request_id
 from app.core.responses import ErrorItem, error_envelope
+from app.observability import get_logger
+
+_logger = get_logger(__name__)
 
 
 def _request_id_from(request: Request) -> str | None:
@@ -21,6 +24,14 @@ def register_exception_handlers(app: FastAPI) -> None:
 
     @app.exception_handler(AppError)
     async def app_error_handler(request: Request, exc: AppError) -> JSONResponse:
+        _logger.warning(
+            "application error",
+            extra={
+                "error_code": exc.error_code,
+                "status_code": exc.status_code,
+                "http_path": request.url.path,
+            },
+        )
         body = error_envelope(
             code=exc.error_code,
             message=exc.message,
@@ -73,6 +84,13 @@ def register_exception_handlers(app: FastAPI) -> None:
     async def unhandled_exception_handler(
         request: Request, exc: Exception
     ) -> JSONResponse:
+        _logger.exception(
+            "unhandled exception",
+            extra={
+                "http_path": request.url.path,
+                "exc_type": type(exc).__name__,
+            },
+        )
         body = error_envelope(
             code=ErrorCode.INTERNAL_ERROR,
             message="An unexpected error occurred",

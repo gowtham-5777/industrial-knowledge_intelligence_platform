@@ -62,6 +62,14 @@
 #   GET /api/v1/ping
 #   OpenAPI UI: /docs
 #
+# Logging (Milestone 1.10):
+#   LOG_LEVEL=INFO|DEBUG|WARNING|ERROR
+#   LOG_JSON=true   # structured JSON on stdout (default); false = text
+#   Convention: from app.observability import get_logger
+#               logger = get_logger(__name__)
+#   Every request emits an access log with request_id + latency_ms.
+#   In-process latency counters: get_request_metrics().snapshot()
+#
 # Tooling:
 #   ruff check .
 #   black --check .
