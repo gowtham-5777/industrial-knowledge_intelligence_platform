@@ -33,6 +33,10 @@ OPENAPI_TAGS = [
         "name": "Sync",
         "description": "Corpus discovery + selective download (local or Drive-shaped).",
     },
+    {
+        "name": "Documents",
+        "description": "Document catalog, list/get, and manual upload.",
+    },
 ]
 
 

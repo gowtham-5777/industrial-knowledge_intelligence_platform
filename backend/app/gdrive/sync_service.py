@@ -10,10 +10,10 @@ from sqlalchemy.orm import Session
 
 from app.core.config import Settings
 from app.core.exceptions import AppError, ErrorCode
-from app.db.repositories.documents import DocumentCatalogRepository
+from app.documents.classification import normalize_rel_path
+from app.documents.service import DocumentCatalogService
 from app.gdrive.local_client import LocalCorpusClient, file_md5
 from app.gdrive.models import DiscoveredFile, SyncRunSummary
-from app.gdrive.path_classify import normalize_rel_path
 from app.gdrive.sync_state import SyncStateRepository
 from app.storage.service import StorageService
 
@@ -59,7 +59,7 @@ class CorpusSyncService:
         self.session = session
         self.settings = settings
         self.storage = storage
-        self.catalog_repo = DocumentCatalogRepository(session)
+        self.catalog_service = DocumentCatalogService(session, storage)
         self.sync_repo = SyncStateRepository(session)
         self._client: LocalCorpusClient | None = None
 
@@ -187,27 +187,19 @@ class CorpusSyncService:
         return self.get_status()
 
     def _upsert_discovered(self, item: DiscoveredFile) -> None:
-        self.catalog_repo.upsert_discovery(
+        # Milestone 1.7.1 — catalog upsert via DocumentCatalogService
+        self.catalog_service.upsert_from_discovery(
             drive_file_id=item.source_file_id,
             name=item.name,
             folder_path=item.folder_path,
             mime_type=item.mime_type,
             size_bytes=item.size_bytes,
             md5_checksum=item.content_fingerprint,
-            doc_category=item.doc_category,
-            doc_subtype=item.doc_subtype,
-            drawing_number=item.drawing_number,
-            motor_type_code=item.motor_type_code,
+            absolute_path=item.absolute_path,
+            source="local",
+            classify=True,
+            link_registry_stubs=True,
         )
-        # Stash absolute path for selective download (1.6.6)
-        row = self.catalog_repo.get_by_drive_file_id(item.source_file_id)
-        if row is not None:
-            meta = dict(row.extra_metadata or {})
-            meta["absolute_path"] = item.absolute_path
-            meta["asset_domain"] = item.asset_domain
-            meta["source"] = "local"
-            row.extra_metadata = meta
-            self.session.flush()
 
     def selective_download(
         self,

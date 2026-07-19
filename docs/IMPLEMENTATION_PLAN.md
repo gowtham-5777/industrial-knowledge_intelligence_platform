@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 1 — Foundation |
-| **Current Milestone** | Milestone 1.7 — Document Catalog & Upload |
+| **Current Milestone** | Milestone 1.8 — Frontend Shell |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~11% (6 milestones complete) |
+| **Overall Progress** | ~13% (7 milestones complete) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 1.8 — Frontend Shell |
-| **Last Tracker Update** | 2026-07-19 — Milestone 1.6 Complete; awaiting approval for 1.7 |
+| **Next Milestone After Current** | Milestone 1.9 — Docker Compose Stack |
+| **Last Tracker Update** | 2026-07-19 — Milestone 1.7 Complete; awaiting approval for 1.8 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -310,7 +310,7 @@ Phases match Architecture §24 exactly.
 | 1.4 | Authentication | Complete |
 | 1.5 | Object Storage | Complete |
 | 1.6 | Google Drive Integration | Complete |
-| 1.7 | Document Catalog & Upload | Not Started |
+| 1.7 | Document Catalog & Upload | Complete |
 | 1.8 | Frontend Shell | Not Started |
 | 1.9 | Docker Compose Stack | Not Started |
 | 1.10 | Logging & Observability Foundation | Not Started |
@@ -467,11 +467,11 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 1.7.1 | Catalog upsert from Drive discovery | Not Started |
-| 1.7.2 | Manual upload API (PDF/DOCX/XLSX/images) | Not Started |
-| 1.7.3 | Document list/get endpoints (secondary UX support) | Not Started |
-| 1.7.4 | Doc category/subtype classification from path | Not Started |
-| 1.7.5 | Asset stub linking from filenames/drawing numbers (skeleton) | Not Started |
+| 1.7.1 | Catalog upsert from Drive discovery | Complete |
+| 1.7.2 | Manual upload API (PDF/DOCX/XLSX/images) | Complete |
+| 1.7.3 | Document list/get endpoints (secondary UX support) | Complete |
+| 1.7.4 | Doc category/subtype classification from path | Complete |
+| 1.7.5 | Asset stub linking from filenames/drawing numbers (skeleton) | Complete |
 
 ## Milestone 1.8 — Frontend Shell
 
@@ -1059,10 +1059,12 @@ Every task must be executed as:
 
 ### 1.7 Catalog & Upload
 
-- [ ] Catalog reflects ≈ full discovery count  
-- [ ] Manual upload creates document + storage object  
-- [ ] Path-based `doc_category` / `doc_subtype`  
-- [ ] Filename drawing-number stubs linked  
+- [x] Catalog reflects ≈ full discovery count  
+- [x] Manual upload creates document + storage object  
+- [x] Path-based `doc_category` / `doc_subtype`  
+- [x] Filename drawing-number stubs linked  
+
+**Milestone 1.7 DoD met — 2026-07-19** (catalog APIs + manual upload + stub linking).
 
 ### 1.8 Frontend Shell
 
@@ -1513,7 +1515,7 @@ Every milestone checklist must cover the applicable subset:
 
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
-| Phase 1 — Foundation | In Progress | 55% (6/11 milestones) | Engineering | Architecture Report | — | Milestone 1.6 Complete |
+| Phase 1 — Foundation | In Progress | 64% (7/11 milestones) | Engineering | Architecture Report | — | Milestone 1.7 Complete |
 | Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | — |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
@@ -1530,8 +1532,8 @@ Every milestone checklist must cover the applicable subset:
 | 1.4 Authentication | 1 | Complete | 100% | Engineering | 1.3 | 2026-07-17 | JWT seed login/refresh/me; protected routes; frontend session |
 | 1.5 Object Storage | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-19 | Port + local/MinIO/Azure adapters; upload/download/signed URL; MIME/size |
 | 1.6 Google Drive Integration | 1 | Complete | 100% | Engineering | 1.3, 1.5 | 2026-07-19 | Local corpus discovery + checkpoint + selective download + sync API |
-| 1.7 Document Catalog & Upload | 1 | Not Started | 0% | — | 1.6 | — | **ACTIVE** |
-| 1.8 Frontend Shell | 1 | Not Started | 0% | — | 1.1 | — | — |
+| 1.7 Document Catalog & Upload | 1 | Complete | 100% | Engineering | 1.6 | 2026-07-19 | Catalog list/stats/get; upload; classification; drawing/asset stubs |
+| 1.8 Frontend Shell | 1 | Not Started | 0% | — | 1.1 | — | **ACTIVE** |
 | 1.9 Docker Compose Stack | 1 | Not Started | 0% | — | 1.2, 1.3 | — | — |
 | 1.10 Logging Foundation | 1 | Not Started | 0% | — | 1.2 | — | — |
 | 1.11 Foundation Validation Gate | 1 | Not Started | 0% | — | 1.1–1.10 | — | — |

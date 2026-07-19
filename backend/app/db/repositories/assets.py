@@ -36,6 +36,7 @@ class AssetRepository(BaseRepository[Asset]):
         product_line_id: str | None = None,
         status: str = "active",
         description: str | None = None,
+        extra_metadata: dict | None = None,
     ) -> Asset:
         asset = Asset(
             asset_type=asset_type,
@@ -45,5 +46,27 @@ class AssetRepository(BaseRepository[Asset]):
             product_line_id=product_line_id,
             status=status,
             description=description,
+            extra_metadata=extra_metadata,
         )
         return self.add(asset)
+
+    def get_or_create_stub(
+        self,
+        *,
+        asset_type: str,
+        name: str,
+        asset_tag: str,
+        description: str | None = None,
+    ) -> Asset:
+        """Skeleton asset for discovery/upload linking (Milestone 1.7.5)."""
+        existing = self.get_by_tag(asset_tag)
+        if existing is not None:
+            return existing
+        return self.create(
+            asset_type=asset_type,
+            name=name,
+            asset_tag=asset_tag,
+            status="stub",
+            description=description or "Auto-created stub from document metadata",
+            extra_metadata={"source": "document_stub"},
+        )
