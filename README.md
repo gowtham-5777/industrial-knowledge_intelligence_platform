@@ -156,9 +156,10 @@ Multi-domain industrial corpus on **Google Drive** (~**27,300** documents).
 │   ├── ARCHITECTURE.md              # Design authority
 │   ├── IMPLEMENTATION_PLAN.md       # Execution & progress
 │   └── MILESTONE_GIT_WORKFLOW.md    # Git / release protocol
-├── backend/                         # FastAPI modular monolith (upcoming)
-├── frontend/                        # Next.js app (upcoming)
-├── docker/                          # Compose & images (upcoming)
+├── backend/                         # FastAPI modular monolith
+├── frontend/                        # Next.js enterprise shell
+├── docker/                          # Dockerfiles + corpus placeholder
+├── docker-compose.yml               # Local full stack (Milestone 1.9)
 ├── .gitignore
 └── README.md
 ```
@@ -194,7 +195,7 @@ Development is **milestone-based** (not day-based). One milestone = one feature 
 | **1.6** Google Drive Integration | Discovery, checkpoints, selective download | Complete |
 | **1.7** Document Catalog & Upload | Catalog upsert; path classification; upload API | Complete |
 | **1.8** Frontend Shell | Next.js nav shell; enterprise sidebar routes | Complete |
-| **1.9** Docker Compose Stack | API, web, Postgres, Redis, Neo4j, Qdrant, storage | Planned |
+| **1.9** Docker Compose Stack | API, web, Postgres, Redis, Neo4j, Qdrant, storage | Complete |
 | **1.10** Logging Foundation | Structured JSON logs + correlation IDs | Planned |
 | **1.11** Foundation Validation Gate | Phase 1 DoD + checklist sign-off | Planned |
 
@@ -265,37 +266,55 @@ Detailed tasks and definitions of done: [docs/IMPLEMENTATION_PLAN.md](docs/IMPLE
 
 ## Installation & Setup
 
-> Application packages land in **Milestone 1.1+**. Until then, clone and review docs.
-
 ```bash
 git clone <your-repo-url>
 cd "INDUSTIAL INTELLIGENCE PARTNER"
 ```
 
-**Planned prerequisites (post–Milestone 1.1 / 1.9):**
+**Prerequisites:** Docker Desktop (Compose v2), and optionally Python 3.11+ / Node.js 20+ for non-Compose local work.
 
-- Python 3.11+
-- Node.js 20+
-- Docker Desktop
-- `.env` from `.env.example` (API keys, DB, Drive, etc.)
+### One-command local boot (Milestone 1.9)
 
 ```bash
-cp .env.example .env   # after bootstrap creates it
-docker compose up -d   # after Milestone 1.9
+cp .env.example .env
+docker compose up --build
+```
+
+First build compiles the Next.js production image and may take several minutes. Subsequent starts reuse cached layers and named volumes.
+
+| Service | URL / port |
+|---|---|
+| Frontend | http://localhost:3000 |
+| API | http://localhost:8000 |
+| OpenAPI | http://localhost:8000/docs |
+| Health | `GET http://localhost:8000/health` |
+| Ready | `GET http://localhost:8000/ready` |
+| MinIO API / Console | http://localhost:9000 · http://localhost:9001 |
+| Neo4j Browser | http://localhost:7474 |
+| Qdrant | http://localhost:6333 |
+| Postgres | `localhost:5432` |
+| Redis | `localhost:6379` |
+
+**Seeded login (after API starts):** `admin@example.com` / `ChangeMeAdmin!`
+
+**Optional corpus mount:** set `CORPUS_HOST_PATH` in `.env` to your dataset folder on the host. It is bind-mounted read-only at `/corpus` inside the API container (`CORPUS_LOCAL_ROOT=/corpus`).
+
+**Stop / reset:**
+
+```bash
+docker compose down          # keep volumes
+docker compose down -v       # wipe Postgres / MinIO / Neo4j / Qdrant / Redis data
 ```
 
 ---
 
 ## Running the Project
 
-| Service | Planned command / URL |
+| Mode | Command |
 |---|---|
-| API | `uvicorn` via Compose → `http://localhost:8000` |
-| OpenAPI | `http://localhost:8000/docs` |
-| Health | `GET /health` |
-| Frontend | Next.js → `http://localhost:3000` |
-
-Exact scripts will be finalized in Phase 1 milestones and kept runnable after every commit.
+| Full stack (recommended) | `docker compose up --build` |
+| API only (host Python) | See `backend/README.md` |
+| Frontend only (host Node) | See `frontend/README.md` |
 
 ---
 
@@ -389,4 +408,4 @@ MIT License — see `LICENSE` (to be added) or use freely for hackathon evaluati
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, DoD, trackers |
 | [docs/MILESTONE_GIT_WORKFLOW.md](docs/MILESTONE_GIT_WORKFLOW.md) | Git branch / tag / PR protocol |
 
-**Current engineering focus:** Milestone **1.9 — Docker Compose Stack** (next implementation step; awaiting approval).
+**Current engineering focus:** Milestone **1.10 — Logging & Observability Foundation** (next implementation step; awaiting approval).
