@@ -17,10 +17,14 @@ def get_engine() -> Engine:
     """Create a cached SQLAlchemy engine from settings."""
     settings = get_settings()
     connect_args: dict = {}
-    if settings.database_url.startswith("sqlite"):
+    url = settings.database_url
+    if url.startswith("sqlite"):
         connect_args["check_same_thread"] = False
+    elif url.startswith("postgresql"):
+        # Avoid multi-minute hangs when Postgres is down (tests /ready probe)
+        connect_args["connect_timeout"] = 3
     return create_engine(
-        settings.database_url,
+        url,
         pool_pre_ping=True,
         connect_args=connect_args,
     )

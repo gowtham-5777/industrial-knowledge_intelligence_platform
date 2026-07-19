@@ -29,6 +29,10 @@ OPENAPI_TAGS = [
         "name": "Protected",
         "description": "Routes that require a Bearer access token.",
     },
+    {
+        "name": "Sync",
+        "description": "Corpus discovery + selective download (local or Drive-shaped).",
+    },
 ]
 
 

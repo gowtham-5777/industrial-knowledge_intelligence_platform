@@ -63,6 +63,15 @@ class Settings(BaseSettings):
     azure_storage_connection_string: str = ""
     azure_storage_container: str = "industrial-brain"
 
+    # --- Corpus source (Milestone 1.6 — local primary; Drive optional later) ---
+    corpus_source: Literal["local", "gdrive"] = "local"
+    corpus_local_root: str = ""
+    corpus_discovery_batch_size: int = 500
+    corpus_download_max_files: int = 50
+    corpus_download_max_bytes: int = 500 * 1024 * 1024
+    google_drive_folder_id: str = ""
+    google_service_account_file: str = ""
+
     # --- Optional integrations (wired in later milestones) ---
     openai_api_key: str = ""
     google_api_key: str = ""
