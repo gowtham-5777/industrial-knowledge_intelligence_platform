@@ -8,6 +8,7 @@ from app.auth.dependencies import CurrentUserDep, get_current_user
 from app.auth.routes import router as auth_router
 from app.core.dependencies import RequestIdDep, SettingsDep
 from app.core.responses import success_envelope
+from app.documents.routes import router as documents_router
 from app.gdrive.routes import router as sync_router
 
 router = APIRouter()
@@ -16,6 +17,8 @@ router = APIRouter()
 router.include_router(auth_router)
 # Corpus sync (local/Drive-shaped) — authenticated
 router.include_router(sync_router)
+# Document catalog + manual upload — authenticated
+router.include_router(documents_router)
 
 
 # Public smoke probe (unauthenticated)

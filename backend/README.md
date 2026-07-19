@@ -44,6 +44,14 @@
 #   Discovery is metadata-only; selective download copies priority Motors files
 #   into object storage (does NOT copy the full multi-GB corpus).
 #
+# Document catalog & upload (Milestone 1.7):
+#   GET  /api/v1/documents/catalog
+#   GET  /api/v1/documents/catalog/stats
+#   GET  /api/v1/documents/catalog/{id}
+#   GET  /api/v1/documents
+#   GET  /api/v1/documents/{id}
+#   POST /api/v1/documents/upload  (multipart: file, optional folder_path, title)
+#
 # Probes:
 #   GET /health
 #   GET /ready
