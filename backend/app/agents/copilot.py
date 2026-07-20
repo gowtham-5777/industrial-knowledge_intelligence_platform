@@ -9,6 +9,7 @@ from typing import Any
 from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
+from app.audit.service import AuditService
 from app.agents.graph import CopilotGraph
 from app.agents.router import QueryRouter
 from app.agents.schemas import (
@@ -82,6 +83,15 @@ class CopilotService:
         # rollback on missing OpenAI/Qdrant and would otherwise erase the turn.
         self._checkpoint()
 
+        AuditService(self.session).write(
+            "copilot_query",
+            actor_user_id=user_id,
+            resource_type="copilot_session",
+            resource_id=session_id,
+            details={"message_len": len(body.message), "motor_id": motor_id},
+        )
+        self._checkpoint()
+
         state = self.graph.run(body.message, motor_id=motor_id)
         answer = state.get("answer") or "Not available in indexed knowledge."
         assistant = CopilotMessage(
@@ -106,6 +116,19 @@ class CopilotService:
             },
         )
         self.session.add(assistant)
+        self._checkpoint()
+
+        AuditService(self.session).write(
+            "copilot_response",
+            actor_user_id=user_id,
+            resource_type="copilot_message",
+            resource_id=assistant.id,
+            details={
+                "session_id": session_id,
+                "verified": bool(state.get("verified")),
+                "citation_count": len(assistant.citations or []),
+            },
+        )
         self._checkpoint()
 
         return ChatResponse(

@@ -78,6 +78,8 @@ class HybridRetrievalService:
         drawing_number: str | None = None,
         doc_category: str | None = None,
         asset_id: str | None = None,
+        user: Any | None = None,
+        apply_acl: bool = True,
     ) -> dict[str, Any]:
         # NOTE: only channels that never touch ``self.session`` (vector/graph —
         # embedding + Qdrant + Neo4j calls) run on background threads. The
@@ -154,6 +156,15 @@ class HybridRetrievalService:
                 item["promoted_context"] = item["parent_section"]
 
         reranked = simple_rerank(query, candidates, limit=limit)
+
+        # Milestone 5.1.2 — ACL filter before LLM sees content
+        if apply_acl and user is not None:
+            from app.auth.acl import DocumentAclFilter
+
+            reranked = DocumentAclFilter(self.session).filter_retrieval_results(
+                reranked, user=user
+            )
+
         context = self._assemble_context(reranked)
 
         _logger.info(
@@ -263,16 +274,7 @@ class HybridRetrievalService:
 
     @staticmethod
     def _assemble_context(results: list[dict[str, Any]]) -> str:
-        blocks = []
-        for i, item in enumerate(results, start=1):
-            cite = (
-                item.get("citation")
-                or f"[{item.get('document_id')}:{item.get('chunk_id')}]"
-            )
-            parent = item.get("promoted_context") or item.get("parent_section") or ""
-            body = item.get("text") or ""
-            header = f"[{i}] {cite}"
-            if parent:
-                header += f" — {parent}"
-            blocks.append(f"{header}\n{body}")
-        return "\n\n".join(blocks)
+        # Milestone 5.6.3 — isolate retrieved text from system instructions
+        from app.security.prompt_guard import assemble_isolated_context
+
+        return assemble_isolated_context(results)

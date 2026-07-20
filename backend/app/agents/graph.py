@@ -181,10 +181,19 @@ class CopilotGraph:
         }
 
     def _node_verify(self, state: CopilotState) -> dict[str, Any]:
+        from app.security.prompt_guard import verify_answer_citations
+
         motor_id = state.get("motor_id")
         answer = state.get("answer") or ""
+        citations = state.get("citations") or []
+        cite_check = verify_answer_citations(answer, citations)
+        if cite_check.get("footer") and not cite_check.get("ok"):
+            answer = f"{answer}{cite_check['footer']}"
+
         checks = self.verifier.verify_answer(answer, motor_id=motor_id)
         verified = all(c.get("ok", True) for c in checks) if checks else True
+        if citations and not cite_check.get("ok"):
+            verified = False
         confidence = float(state.get("confidence") or 0.5)
         if checks and not verified:
             confidence = min(confidence, 0.45)

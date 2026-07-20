@@ -101,6 +101,12 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
     log_json: bool = True
 
+    # --- Phase 5 — Enterprise ---
+    cache_ttl_seconds: int = 300
+    rate_limit_enabled: bool = True
+    rate_limit_per_minute: int = 120
+    drive_sync_max_per_minute: int = 30
+
     debug: bool = Field(default=False)
 
     @field_validator("cors_origins", mode="before")
@@ -125,6 +131,11 @@ class Settings(BaseSettings):
             joined = ", ".join(insecure_secrets)
             raise ValueError(
                 f"Production mode requires non-placeholder values for: {joined}"
+            )
+        # CORS must be explicitly locked in production (Milestone 5.6.4)
+        if not self.cors_origin_list or "*" in self.cors_origins:
+            raise ValueError(
+                "Production mode requires CORS_ORIGINS locked to explicit origin(s)"
             )
         return self
 

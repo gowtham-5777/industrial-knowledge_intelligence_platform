@@ -1,16 +1,24 @@
-"""Document catalog & upload API routes (Milestone 1.7)."""
+"""Document catalog & upload API routes (Milestones 1.7 / 5.1 / 5.2 / 5.6)."""
 
 from __future__ import annotations
 
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, File, Form, Query, UploadFile
+from fastapi import APIRouter, Depends, File, Form, Query, Request, UploadFile
 
-from app.auth.dependencies import get_current_user
-from app.core.dependencies import DbSessionDep, RequestIdDep, StorageServiceDep
+from app.audit.service import AuditService
+from app.auth.acl import DocumentAclFilter
+from app.auth.dependencies import CurrentUserDep, get_current_user, require_roles
+from app.core.dependencies import (
+    DbSessionDep,
+    RequestIdDep,
+    SettingsDep,
+    StorageServiceDep,
+)
 from app.core.exceptions import AppError, ErrorCode
 from app.core.responses import success_envelope
 from app.documents.service import DocumentCatalogService
+from app.security.hardening import assert_safe_upload
 
 router = APIRouter(
     prefix="/documents",
@@ -113,9 +121,24 @@ def list_documents(
 @router.post(
     "/upload",
     summary="Manual upload (PDF / DOCX / XLSX / images)",
+    dependencies=[
+        Depends(
+            require_roles(
+                "MaintenanceEngineer",
+                "ReliabilityEngineer",
+                "QualityEngineer",
+                "SystemAdmin",
+                "PlantManager",
+            )
+        )
+    ],
 )
 async def upload_document(
     service: DocumentServiceDep,
+    session: DbSessionDep,
+    settings: SettingsDep,
+    user: CurrentUserDep,
+    request: Request,
     request_id: RequestIdDep,
     file: Annotated[UploadFile, File()],
     folder_path: Annotated[str | None, Form()] = None,
@@ -128,13 +151,31 @@ async def upload_document(
             error_code=ErrorCode.VALIDATION_ERROR,
             status_code=400,
         )
-    result = service.upload_manual(
+    safe_name, mime = assert_safe_upload(
         filename=file.filename or "upload.bin",
         content=payload,
         content_type=file.content_type,
+        max_bytes=settings.storage_max_upload_bytes,
+        allowed_mimes=settings.storage_allowed_mime_types_set or None,
+    )
+    result = service.upload_manual(
+        filename=safe_name,
+        content=payload,
+        content_type=mime,
         folder_path=folder_path,
         title=title,
     )
+    # Default ACL on newly uploaded document
+    DocumentAclFilter(session).ensure_default_acl(result.document.id)
+    AuditService(session).write(
+        "document_upload",
+        actor_user_id=user.id,
+        resource_type="document",
+        resource_id=result.document.id,
+        ip_address=request.client.host if request.client else None,
+        details={"filename": safe_name, "bytes": len(payload)},
+    )
+    session.commit()
     return success_envelope(result.model_dump(mode="json"), request_id=request_id)
 
 
@@ -145,7 +186,19 @@ async def upload_document(
 def get_document(
     document_id: str,
     service: DocumentServiceDep,
+    session: DbSessionDep,
+    user: CurrentUserDep,
+    request: Request,
     request_id: RequestIdDep,
 ) -> dict:
     data = service.get_document(document_id)
+    AuditService(session).write(
+        "document_view",
+        actor_user_id=user.id,
+        resource_type="document",
+        resource_id=document_id,
+        ip_address=request.client.host if request.client else None,
+        details={"title": data.title},
+    )
+    session.commit()
     return success_envelope(data.model_dump(mode="json"), request_id=request_id)

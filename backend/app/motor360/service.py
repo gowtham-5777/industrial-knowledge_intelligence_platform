@@ -1,9 +1,10 @@
-"""Single-asset intelligence bundle aggregation (Phase 3)."""
+"""Single-asset intelligence bundle aggregation (Phase 3 / 5.3 cache)."""
 
 from __future__ import annotations
 
 from sqlalchemy.orm import Session
 
+from app.cache import CacheService, motor360_cache_key
 from app.core.config import Settings, get_settings
 from app.graph.subgraph import GraphSubgraphService
 from app.health.scoring import HealthScoringService
@@ -34,9 +35,20 @@ class Motor360Service:
     def __init__(self, session: Session, settings: Settings | None = None) -> None:
         self.session = session
         self.settings = settings or get_settings()
+        self.cache = CacheService(self.settings)
 
     def get_bundle(self, motor_id: str, *, refresh: bool = False) -> Motor360Out:
         model = resolve_motor_model(self.session, motor_id)
+        cache_key = motor360_cache_key(model.id)
+
+        if not refresh:
+            cached = self.cache.get_json(cache_key)
+            if cached is not None:
+                _logger.info(
+                    "motor360 cache hit",
+                    extra={"motor_id": model.id},
+                )
+                return Motor360Out.model_validate(cached)
 
         motor_out = MotorRegistryService(self.session).get_motor(model.id)
         documents = self._document_panels(model.id)
@@ -63,11 +75,7 @@ class Motor360Service:
             d.drawing_number for d in get_drawing_numbers_for_motor(self.session, model)
         ]
 
-        _logger.info(
-            "motor360 bundle assembled",
-            extra={"motor_id": model.id, "refresh": refresh},
-        )
-        return Motor360Out(
+        bundle = Motor360Out(
             motor=motor_out,
             documents=documents,
             summary=summary,
@@ -78,6 +86,12 @@ class Motor360Service:
             subgraph=subgraph,
             drawing_numbers=drawing_numbers,
         )
+        self.cache.set_json(cache_key, bundle.model_dump(mode="json"))
+        _logger.info(
+            "motor360 bundle assembled",
+            extra={"motor_id": model.id, "refresh": refresh, "cache": "set"},
+        )
+        return bundle
 
     def _document_panels(self, motor_id: str) -> list[DocumentPanel]:
         model = resolve_motor_model(self.session, motor_id)

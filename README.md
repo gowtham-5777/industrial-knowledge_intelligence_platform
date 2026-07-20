@@ -250,8 +250,13 @@ Development is **milestone-based** (not day-based). One milestone = one feature 
 
 | Milestone | Aspect | Status |
 |---|---|---|
-| **5.1–5.6** | RBAC, audit, caching, workers, monitoring, security | Planned |
-| **5.7** | Enterprise validation gate | Planned |
+| **5.1** RBAC Hardening | Role gates + document ACL + admin UI | Complete |
+| **5.2** Audit Logs | Immutable events + export | Complete |
+| **5.3** Caching | Motor 360 Redis/memory cache + invalidation | Complete |
+| **5.4** Worker Hardening | Retries, DLQ, Drive rate limit, progress SSE | Complete |
+| **5.5** Monitoring | Metrics, queue depth, ops dashboard | Complete |
+| **5.6** Security | Rate limit, upload guards, prompt isolation, CORS | Complete |
+| **5.7** Validation Gate | Enterprise checklist passed | Complete |
 
 ### Phase 6 — Testing & Polish
 
@@ -377,6 +382,7 @@ _Coming later — Asset 360, Fleet Dashboard, Copilot, and Graph views will be a
 | Maintenance Intelligence | Complete (Phase 4.3) |
 | Compliance Center | Complete (Phase 4.5) |
 | Analytics | Complete (Phase 4.6) |
+| Administration | Complete (Phase 5.1) |
 
 ---
 
@@ -418,4 +424,4 @@ MIT License — see `LICENSE` (to be added) or use freely for hackathon evaluati
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, DoD, trackers |
 | [docs/MILESTONE_GIT_WORKFLOW.md](docs/MILESTONE_GIT_WORKFLOW.md) | Git branch / tag / PR protocol |
 
-**Current engineering focus:** Milestone **5.1 — RBAC Hardening** (next implementation step; awaiting approval). Phase 4 Industrial AI is **Complete**.
+**Current engineering focus:** Milestone **6.1 — Automated Test Suite Expansion** (next implementation step; awaiting approval). Phase 5 Enterprise is **Complete**.

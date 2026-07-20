@@ -8,16 +8,29 @@ from fastapi import APIRouter, Depends
 
 from app.auth.dependencies import get_current_user
 from app.core.dependencies import DbSessionDep, RequestIdDep, SettingsDep
+from app.core.exceptions import AppError, ErrorCode
 from app.core.responses import success_envelope
 from app.gdrive.schemas import SyncAuthData, SyncStartRequest, SyncStatusData
 from app.gdrive.sync_service import CorpusSyncService
 from app.storage.factory import get_storage_service
+from app.workers.hardening import DriveRateLimiter
 
 router = APIRouter(
     prefix="/sync",
     tags=["Sync"],
     dependencies=[Depends(get_current_user)],
 )
+
+_DRIVE_LIMITER: DriveRateLimiter | None = None
+
+
+def _drive_limiter(settings: SettingsDep) -> DriveRateLimiter:
+    global _DRIVE_LIMITER
+    if _DRIVE_LIMITER is None:
+        _DRIVE_LIMITER = DriveRateLimiter(
+            max_per_minute=settings.drive_sync_max_per_minute
+        )
+    return _DRIVE_LIMITER
 
 
 def get_corpus_sync_service(
@@ -74,8 +87,20 @@ def sync_status(
 def sync_start(
     body: SyncStartRequest,
     sync: CorpusSyncServiceDep,
+    settings: SettingsDep,
     request_id: RequestIdDep,
 ) -> dict:
+    limiter = _drive_limiter(settings)
+    if not limiter.acquire():
+        raise AppError(
+            "Drive/corpus sync rate limit exceeded — retry shortly",
+            error_code=ErrorCode.VALIDATION_ERROR,
+            status_code=429,
+            details={
+                "retry_after_seconds": round(limiter.wait_seconds(), 1),
+                "max_per_minute": settings.drive_sync_max_per_minute,
+            },
+        )
     summary = sync.start(
         mode=body.mode,
         resume=body.resume,

@@ -231,6 +231,55 @@ def indexing_status(session: DbSessionDep, request_id: RequestIdDep) -> dict:
 
 
 @router.get(
+    "/progress/stream",
+    summary="SSE stream of indexing job progress (Milestone 5.4.3)",
+)
+def indexing_progress_sse(
+    session: DbSessionDep,
+    document_id: str | None = None,
+    job_id: str | None = None,
+):
+    """Reliable progress events for UI — polls job row with heartbeat."""
+    import json
+    import time
+
+    from fastapi.responses import StreamingResponse
+    from sqlalchemy import select
+
+    from app.db.models.processing import IndexingJob
+
+    def _events():
+        last_status = None
+        # Cap stream duration for demo reliability
+        for _ in range(60):
+            stmt = select(IndexingJob).order_by(IndexingJob.updated_at.desc())
+            if job_id:
+                stmt = stmt.where(IndexingJob.id == job_id)
+            elif document_id:
+                stmt = stmt.where(IndexingJob.document_id == document_id)
+            job = session.scalars(stmt.limit(1)).first()
+            payload = {
+                "job_id": job.id if job else None,
+                "document_id": job.document_id if job else document_id,
+                "status": job.status if job else "unknown",
+                "attempts": job.attempts if job else 0,
+                "error_message": job.error_message if job else None,
+            }
+            if payload["status"] != last_status:
+                last_status = payload["status"]
+                yield f"event: progress\ndata: {json.dumps(payload)}\n\n"
+            else:
+                yield f"event: heartbeat\ndata: {json.dumps({'ok': True})}\n\n"
+            if job and job.status in ("completed", "failed"):
+                yield f"event: done\ndata: {json.dumps(payload)}\n\n"
+                break
+            time.sleep(0.5)
+            session.expire_all()
+
+    return StreamingResponse(_events(), media_type="text/event-stream")
+
+
+@router.get(
     "/priority-subset",
     summary="Hero motor + priority document selection (Milestone 2.9)",
 )
@@ -264,12 +313,16 @@ def priority_enqueue(
     return success_envelope(data, request_id=request_id)
 
 
-@router.post("/retrieve", summary="Hybrid retrieval (Milestone 2.7) + citations (2.8)")
+@router.post(
+    "/retrieve",
+    summary="Hybrid retrieval (Milestone 2.7) + citations (2.8)",
+)
 def retrieve(
     body: RetrieveRequest,
     session: DbSessionDep,
     settings: SettingsDep,
     request_id: RequestIdDep,
+    user=Depends(get_current_user),
 ) -> dict:
     retrieval = HybridRetrievalService(session, settings)
     result = retrieval.retrieve(
@@ -279,6 +332,8 @@ def retrieve(
         drawing_number=body.drawing_number,
         doc_category=body.doc_category,
         asset_id=body.asset_id,
+        user=user,
+        apply_acl=True,
     )
     citations = CitationService(session)
     refs = citations.format_from_results(result["results"])

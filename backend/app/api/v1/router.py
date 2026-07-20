@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends
 
 from app.agents.compliance_routes import router as compliance_router
 from app.agents.routes import router as copilot_router
+from app.admin.routes import router as admin_router
 from app.auth.dependencies import CurrentUserDep, get_current_user
 from app.auth.routes import router as auth_router
 from app.core.dependencies import RequestIdDep, SettingsDep
@@ -21,6 +22,7 @@ from app.indexing.routes import router as indexing_router
 from app.knowledge.routes import router as search_router
 from app.motor360.routes import router as motor360_router
 from app.motors.routes import router as motors_router
+from app.observability.ops_routes import router as ops_router
 from app.reasoning.routes import router as reasoning_router
 
 router = APIRouter()
@@ -55,6 +57,10 @@ router.include_router(reasoning_router)
 router.include_router(compliance_router)
 # Fleet analytics (Phase 4) — authenticated
 router.include_router(analytics_router)
+# Admin users/roles/audit (Phase 5) — role-gated inside router
+router.include_router(admin_router)
+# Ops metrics / DLQ / hygiene (Phase 5) — role-gated inside router
+router.include_router(ops_router)
 
 
 @router.get(

@@ -53,3 +53,23 @@ class GdriveSyncState(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     extra_metadata: Mapped[dict[str, Any] | None] = mapped_column(
         "metadata", JSON, nullable=True
     )
+
+
+class DeadLetterJob(UUIDPrimaryKeyMixin, TimestampMixin, Base):
+    """Failed Celery/indexing tasks after retries exhausted (Phase 5.4)."""
+
+    __tablename__ = "dead_letter_jobs"
+
+    task_name: Mapped[str] = mapped_column(String(128), nullable=False, index=True)
+    idempotency_key: Mapped[str | None] = mapped_column(
+        String(255), nullable=True, index=True
+    )
+    payload: Mapped[dict[str, Any] | None] = mapped_column(JSON, nullable=True)
+    error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    attempts: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    status: Mapped[str] = mapped_column(
+        String(32), nullable=False, default="open", index=True
+    )
+    document_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("documents.id"), nullable=True, index=True
+    )

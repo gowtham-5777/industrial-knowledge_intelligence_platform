@@ -12,6 +12,7 @@ from app.api.router import api_router
 from app.core.config import Settings, get_settings
 from app.core.error_handlers import register_exception_handlers
 from app.core.middleware import RequestIdMiddleware, TimingMiddleware
+from app.core.rate_limit import RateLimitMiddleware
 from app.health.routes import router as health_router
 from app.observability import configure_logging, get_logger
 
@@ -95,6 +96,14 @@ OPENAPI_TAGS = [
         "name": "Analytics",
         "description": "Fleet coverage and indexing velocity.",
     },
+    {
+        "name": "Admin",
+        "description": "User/role management and audit export.",
+    },
+    {
+        "name": "Ops",
+        "description": "Metrics, queue depth, dead-letter, secrets hygiene.",
+    },
 ]
 
 _logger = get_logger(__name__)
@@ -142,11 +151,22 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         CORSMiddleware,
         allow_origins=cfg.cors_origin_list,
         allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-        expose_headers=["X-Request-ID", "X-Process-Time"],
+        allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+        allow_headers=["Authorization", "Content-Type", "X-Request-ID"],
+        expose_headers=[
+            "X-Request-ID",
+            "X-Process-Time",
+            "X-RateLimit-Limit",
+            "X-RateLimit-Remaining",
+        ],
     )
     # Starlette applies middleware in reverse add order; request ID should wrap timing.
+    app.add_middleware(
+        RateLimitMiddleware,
+        limit=cfg.rate_limit_per_minute,
+        window_seconds=60.0,
+        enabled=cfg.rate_limit_enabled and cfg.app_env != "test",
+    )
     app.add_middleware(TimingMiddleware)
     app.add_middleware(RequestIdMiddleware)
 

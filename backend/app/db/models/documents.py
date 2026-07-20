@@ -68,6 +68,9 @@ class Document(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     asset_links: Mapped[list[DocumentAssetLink]] = relationship(
         back_populates="document"
     )
+    acl: Mapped[DocumentAcl | None] = relationship(
+        back_populates="document", uselist=False
+    )
 
 
 class DocumentVersion(UUIDPrimaryKeyMixin, TimestampMixin, Base):
@@ -110,3 +113,26 @@ class DocumentAssetLink(UUIDPrimaryKeyMixin, TimestampMixin, Base):
             "document_id", "asset_id", "link_type", name="uq_document_asset_link"
         ),
     )
+
+
+class DocumentAcl(UUIDPrimaryKeyMixin, TimestampMixin, Base):
+    """Document-level ACL (Architecture §11) — filter before retrieval/LLM."""
+
+    __tablename__ = "document_acl"
+
+    document_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("documents.id"),
+        nullable=False,
+        unique=True,
+        index=True,
+    )
+    plant_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("plants.id"), nullable=True, index=True
+    )
+    classification: Mapped[str] = mapped_column(
+        String(32), nullable=False, default="internal", index=True
+    )
+    allowed_roles: Mapped[list[str] | None] = mapped_column(JSON, nullable=True)
+
+    document: Mapped[Document] = relationship(back_populates="acl")
