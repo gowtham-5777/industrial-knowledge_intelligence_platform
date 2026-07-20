@@ -77,6 +77,12 @@ class Settings(BaseSettings):
     google_api_key: str = ""
     anthropic_api_key: str = ""
 
+    # --- Azure Document Intelligence (Milestone 2.1 — T1) ---
+    azure_document_intelligence_endpoint: str = ""
+    azure_document_intelligence_key: str = ""
+    # When Azure DI is unset, demote T1 → T2 (PyMuPDF) instead of failing hard
+    parse_fallback_without_azure: bool = True
+
     # --- Logging / observability (Milestone 1.10) ---
     log_level: str = "INFO"
     log_json: bool = True

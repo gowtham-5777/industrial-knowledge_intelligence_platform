@@ -40,6 +40,10 @@ OPENAPI_TAGS = [
         "name": "Documents",
         "description": "Document catalog, list/get, and manual upload.",
     },
+    {
+        "name": "Indexing",
+        "description": "Parsing / OCR pipeline, job status, and parse results.",
+    },
 ]
 
 _logger = get_logger(__name__)

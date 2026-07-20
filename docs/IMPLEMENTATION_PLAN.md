@@ -30,14 +30,14 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 | Field | Value |
 |---|---|
 | **Current Phase** | Phase 2 — Document Intelligence |
-| **Current Milestone** | Milestone 2.1 — Parsing & OCR Pipeline |
+| **Current Milestone** | Milestone 2.2 — Metadata & Entity Extraction |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~20% (Phase 1 complete — 11/11 milestones) |
+| **Overall Progress** | ~22% (Phase 1 complete; Phase 2: 1/10 milestones) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 2.2 — Metadata & Entity Extraction |
-| **Last Tracker Update** | 2026-07-20 — Milestone 1.11 Complete; Phase 1 Complete; awaiting approval for 2.1 |
+| **Next Milestone After Current** | Milestone 2.3 — Chunking |
+| **Last Tracker Update** | 2026-07-20 — Milestone 2.1 Complete; awaiting approval for 2.2 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -320,7 +320,7 @@ Phases match Architecture §24 exactly.
 
 | ID | Milestone | Status |
 |---|---|---|
-| 2.1 | Parsing & OCR Pipeline | Not Started |
+| 2.1 | Parsing & OCR Pipeline | Complete |
 | 2.2 | Metadata & Entity Extraction | Not Started |
 | 2.3 | Chunking | Not Started |
 | 2.4 | Embedding Pipeline | Not Started |
@@ -517,12 +517,22 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.1.1 | Parser router by MIME / folder tier (T0–T4) | Not Started |
-| 2.1.2 | PyMuPDF + pdfplumber handlers | Not Started |
-| 2.1.3 | Azure Document Intelligence layout handler | Not Started |
-| 2.1.4 | Native XML/CSV/HTML handlers for regulations | Not Started |
-| 2.1.5 | Metadata-only path for CAD/3D | Not Started |
-| 2.1.6 | Parse job state machine integration | Not Started |
+| 2.1.1 | Parser router by MIME / folder tier (T0–T4) | Complete |
+| 2.1.2 | PyMuPDF + pdfplumber handlers | Complete |
+| 2.1.3 | Azure Document Intelligence layout handler | Complete |
+| 2.1.4 | Native XML/CSV/HTML handlers for regulations | Complete |
+| 2.1.5 | Metadata-only path for CAD/3D | Complete |
+| 2.1.6 | Parse job state machine integration | Complete |
+
+**Milestone 2.1 DoD met — 2026-07-20** (tier router selects correct parser; Azure DI stub extracts IEC-style test-report table; job state `queued→parsing→parsed|failed`).
+
+**Validation evidence (2026-07-20):**
+- Backend: `pytest` 59 passed (14 new parsing tests); `ruff` / `black` clean
+- Frontend: `npm run lint` / `npm run build` clean
+- Compose: `docker compose config` valid
+- DoD: router → T1 for test reports; StubAzureLayoutHandler extracts Efficiency / PF table rows
+- APIs: `POST /api/v1/indexing/parse`, `/route`, `/route/preview`, `GET /jobs/{id}`, `/parse-results/{document_id}`
+- Migration: `document_parse_results` (`a1b2c3d4e5f6`)
 
 ## Milestone 2.2 — Metadata & Entity Extraction
 
@@ -1534,7 +1544,7 @@ Every milestone checklist must cover the applicable subset:
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
 | Phase 1 — Foundation | Complete | 100% (11/11 milestones) | Engineering | Architecture Report | 2026-07-20 | Gate 1.11 passed; Phase 2 unlocked |
-| Phase 2 — Document Intelligence | Not Started | 0% | Engineering | Phase 1 | — | **ACTIVE** after approval |
+| Phase 2 — Document Intelligence | In Progress | 10% (1/10 milestones) | Engineering | Phase 1 | — | **ACTIVE** — 2.1 complete |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
 | Phase 5 — Enterprise | Not Started | 0% | Engineering | Phase 4 | — | Hackathon MVP subset allowed only after Phase 4 gate |
@@ -1555,8 +1565,8 @@ Every milestone checklist must cover the applicable subset:
 | 1.9 Docker Compose Stack | 1 | Complete | 100% | Engineering | 1.2, 1.3, 1.8 | 2026-07-20 | Compose: api/web/pg/redis/minio/neo4j/qdrant; volumes; README boot |
 | 1.10 Logging Foundation | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-20 | JSON logs; request_id contextvars; get_logger; latency counters |
 | 1.11 Foundation Validation Gate | 1 | Complete | 100% | Engineering | 1.1–1.10 | 2026-07-20 | Phase 1 suite green; validate_phase1.py; no P1 blockers |
-| 2.1 Parsing & OCR | 2 | Not Started | 0% | — | Phase 1 | — | **ACTIVE** |
-| 2.2 Metadata & Entity Extraction | 2 | Not Started | 0% | — | 2.1 | — | — |
+| 2.1 Parsing & OCR | 2 | Complete | 100% | Engineering | Phase 1 | 2026-07-20 | Tier router T0–T4; Azure DI + PyMuPDF; parse jobs + results |
+| 2.2 Metadata & Entity Extraction | 2 | Not Started | 0% | — | 2.1 | — | **ACTIVE** |
 | 2.3 Chunking | 2 | Not Started | 0% | — | 2.1 | — | — |
 | 2.4 Embedding Pipeline | 2 | Not Started | 0% | — | 2.3 | — | — |
 | 2.5 Qdrant Indexing | 2 | Not Started | 0% | — | 2.4 | — | — |

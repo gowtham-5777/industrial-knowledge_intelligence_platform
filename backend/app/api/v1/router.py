@@ -10,6 +10,7 @@ from app.core.dependencies import RequestIdDep, SettingsDep
 from app.core.responses import success_envelope
 from app.documents.routes import router as documents_router
 from app.gdrive.routes import router as sync_router
+from app.indexing.routes import router as indexing_router
 
 router = APIRouter()
 
@@ -19,6 +20,8 @@ router.include_router(auth_router)
 router.include_router(sync_router)
 # Document catalog + manual upload — authenticated
 router.include_router(documents_router)
+# Parse / OCR pipeline (Milestone 2.1) — authenticated
+router.include_router(indexing_router)
 
 
 # Public smoke probe (unauthenticated)

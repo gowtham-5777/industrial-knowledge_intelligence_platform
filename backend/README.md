@@ -56,6 +56,15 @@
 #   GET  /api/v1/documents/{id}
 #   POST /api/v1/documents/upload  (multipart: file, optional folder_path, title)
 #
+# Parsing / OCR (Milestone 2.1 — Architecture §5 tiers T0–T4):
+#   GET  /api/v1/indexing/route/preview?mime_type=&doc_category=&filename=
+#   POST /api/v1/indexing/route     {"document_id"}
+#   POST /api/v1/indexing/parse     {"document_id", "force_tier"?, "sync"?}
+#   GET  /api/v1/indexing/jobs/{job_id}
+#   GET  /api/v1/indexing/parse-results/{document_id}
+#   AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT / KEY for T1 (test reports)
+#   PARSE_FALLBACK_WITHOUT_AZURE=true demotes T1 → T2 (PyMuPDF) when unset
+#
 # Probes:
 #   GET /health
 #   GET /ready

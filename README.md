@@ -204,7 +204,7 @@ Development is **milestone-based** (not day-based). One milestone = one feature 
 
 | Milestone | Aspect | Status |
 |---|---|---|
-| **2.1** Parsing & OCR | Tiered parsers (PyMuPDF, Azure DI, metadata-only CAD) | Planned |
+| **2.1** Parsing & OCR | Tiered parsers (PyMuPDF, Azure DI, metadata-only CAD) | Complete |
 | **2.2** Entity Extraction | Drawing numbers, specs, IEC 60034 measurements | Planned |
 | **2.3** Chunking | Doc-type-aware chunks + citation metadata | Planned |
 | **2.4** Embeddings | Versioned embedding pipeline | Planned |
@@ -415,4 +415,4 @@ MIT License — see `LICENSE` (to be added) or use freely for hackathon evaluati
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, DoD, trackers |
 | [docs/MILESTONE_GIT_WORKFLOW.md](docs/MILESTONE_GIT_WORKFLOW.md) | Git branch / tag / PR protocol |
 
-**Current engineering focus:** Milestone **2.1 — Parsing & OCR Pipeline** (next implementation step; awaiting approval). Phase 1 Foundation is **Complete**.
+**Current engineering focus:** Milestone **2.2 — Metadata & Entity Extraction** (next implementation step; awaiting approval). Milestone 2.1 Parsing & OCR is **Complete**.

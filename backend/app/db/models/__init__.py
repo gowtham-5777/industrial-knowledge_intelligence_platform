@@ -19,6 +19,7 @@ from app.db.models.motors import (
     MotorUnit,
 )
 from app.db.models.organization import Plant, ProductLine
+from app.db.models.parsing import DocumentParseResult
 from app.db.models.processing import GdriveSyncState, IndexingJob
 from app.db.models.system import AuditEvent, Role, User, UserRole
 
@@ -29,6 +30,7 @@ __all__ = [
     "DocumentAssetLink",
     "DocumentCatalog",
     "DocumentDrawingLink",
+    "DocumentParseResult",
     "DocumentVersion",
     "DrawingNumber",
     "GdriveSyncState",
