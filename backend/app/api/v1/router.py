@@ -8,10 +8,16 @@ from app.auth.dependencies import CurrentUserDep, get_current_user
 from app.auth.routes import router as auth_router
 from app.core.dependencies import RequestIdDep, SettingsDep
 from app.core.responses import success_envelope
+from app.dashboard.routes import router as dashboard_router
 from app.documents.routes import router as documents_router
+from app.drawings.routes import router as drawings_router
 from app.extraction.routes import router as extraction_router
 from app.gdrive.routes import router as sync_router
+from app.graph.routes import router as graph_router
 from app.indexing.routes import router as indexing_router
+from app.knowledge.routes import router as search_router
+from app.motor360.routes import router as motor360_router
+from app.motors.routes import router as motors_router
 
 router = APIRouter()
 
@@ -25,9 +31,20 @@ router.include_router(documents_router)
 router.include_router(indexing_router)
 # Metadata / entity extraction (Milestone 2.2) — authenticated
 router.include_router(extraction_router)
+# Motor registry + explorer (Phase 3.1–3.2) — authenticated
+router.include_router(motors_router)
+# Single-motor intelligence bundle (Phase 3) — authenticated
+router.include_router(motor360_router)
+# Drawing number cross-reference explorer (Phase 3) — authenticated
+router.include_router(drawings_router)
+# Unified entity search across motors/documents/drawings (Phase 3) — authenticated
+router.include_router(search_router)
+# Fleet dashboard KPIs (Phase 3) — authenticated
+router.include_router(dashboard_router)
+# React Flow subgraph projection (Phase 3) — authenticated
+router.include_router(graph_router)
 
 
-# Public smoke probe (unauthenticated)
 @router.get(
     "/ping",
     summary="API version ping",
@@ -48,7 +65,6 @@ def ping(
     )
 
 
-# Protected surface — future domain routers mount here with auth required.
 protected_router = APIRouter(
     dependencies=[Depends(get_current_user)],
     tags=["Protected"],

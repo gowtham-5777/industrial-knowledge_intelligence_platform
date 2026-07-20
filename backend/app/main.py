@@ -51,6 +51,30 @@ OPENAPI_TAGS = [
         "name": "Extraction",
         "description": "Metadata / entity extraction, measurements, review queue.",
     },
+    {
+        "name": "Motors",
+        "description": "Asset registry + motor hierarchy explorer APIs.",
+    },
+    {
+        "name": "Motor360",
+        "description": "Single-motor intelligence bundle (flagship aggregation).",
+    },
+    {
+        "name": "Drawings",
+        "description": "Drawing-number lookup and cross-reference.",
+    },
+    {
+        "name": "Search",
+        "description": "Unified motor + document + drawing search.",
+    },
+    {
+        "name": "Dashboard",
+        "description": "Fleet KPIs and indexing pulse.",
+    },
+    {
+        "name": "Graph",
+        "description": "Motor-centered knowledge graph subgraph.",
+    },
 ]
 
 _logger = get_logger(__name__)

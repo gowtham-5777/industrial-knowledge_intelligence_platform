@@ -219,19 +219,19 @@ Development is **milestone-based** (not day-based). One milestone = one feature 
 
 | Milestone | Aspect | Status |
 |---|---|---|
-| **3.1** Asset Registry | Asset-agnostic model + motor hierarchy | Planned |
-| **3.2** Asset Explorer | Browse/filter/search assets | Planned |
-| **3.3** Asset 360 API | Single-bundle motor/asset intelligence API | Planned |
-| **3.4** Timeline | Lifecycle events from evidence | Planned |
-| **3.5** AI Summary | Cached executive brief with citations | Planned |
-| **3.6** Health Score | Deterministic explainable risk score | Planned |
-| **3.7** Recommendations | Citation-backed action cards | Planned |
-| **3.8** Drawing Explorer | Drawing-number cross-reference UI/API | Planned |
-| **3.9** Knowledge Graph UI | Motor-centered visualization | Planned |
-| **3.10** Unified Search | Asset + knowledge + drawing search | Planned |
-| **3.11** Fleet Dashboard | Scale KPIs + indexing progress | Planned |
-| **3.12** Asset 360 Frontend | Flagship demo screen | Planned |
-| **3.13** Validation Gate | Hero Motor 360 end-to-end | Planned |
+| **3.1** Asset Registry | Asset-agnostic model + motor hierarchy | Complete |
+| **3.2** Asset Explorer | Browse/filter/search assets | Complete |
+| **3.3** Asset 360 API | Single-bundle motor/asset intelligence API | Complete |
+| **3.4** Timeline | Lifecycle events from evidence | Complete |
+| **3.5** AI Summary | Cached executive brief with citations | Complete |
+| **3.6** Health Score | Deterministic explainable risk score | Complete |
+| **3.7** Recommendations | Citation-backed action cards | Complete |
+| **3.8** Drawing Explorer | Drawing-number cross-reference UI/API | Complete |
+| **3.9** Knowledge Graph UI | Motor-centered visualization | Complete |
+| **3.10** Unified Search | Asset + knowledge + drawing search | Complete |
+| **3.11** Fleet Dashboard | Scale KPIs + indexing progress | Complete |
+| **3.12** Asset 360 Frontend | Flagship demo screen | Complete |
+| **3.13** Validation Gate | Hero Motor 360 end-to-end | Complete |
 
 ### Phase 4 — Industrial AI
 
@@ -369,11 +369,11 @@ _Coming later — Asset 360, Fleet Dashboard, Copilot, and Graph views will be a
 
 | Screen | Status |
 |---|---|
-| Fleet Dashboard | Pending Milestone 3.11 |
-| Asset Explorer | Pending Milestone 3.2 |
-| Asset 360 | Pending Milestone 3.12 |
+| Fleet Dashboard | Complete (Phase 3.11) |
+| Asset Explorer | Complete (Phase 3.2) |
+| Asset 360 | Complete (Phase 3.12) |
 | Industrial Copilot | Pending Milestone 4.2 |
-| Knowledge Graph | Pending Milestone 3.9 |
+| Knowledge Graph | Complete (Phase 3.9) |
 
 ---
 
@@ -415,4 +415,4 @@ MIT License — see `LICENSE` (to be added) or use freely for hackathon evaluati
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, DoD, trackers |
 | [docs/MILESTONE_GIT_WORKFLOW.md](docs/MILESTONE_GIT_WORKFLOW.md) | Git branch / tag / PR protocol |
 
-**Current engineering focus:** Milestone **3.1 — Asset Registry** (next implementation step; awaiting approval). Phase 2 Document Intelligence is **Complete**.
+**Current engineering focus:** Milestone **4.1 — Query Router** (next implementation step; awaiting approval). Phase 3 Asset Intelligence is **Complete**.
