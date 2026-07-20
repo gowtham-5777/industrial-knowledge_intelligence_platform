@@ -75,6 +75,26 @@ OPENAPI_TAGS = [
         "name": "Graph",
         "description": "Motor-centered knowledge graph subgraph.",
     },
+    {
+        "name": "Copilot",
+        "description": "Query router + Industrial Copilot (SSE chat, feedback).",
+    },
+    {
+        "name": "Maintenance",
+        "description": "Test metric trends and rule-assisted anomaly patterns.",
+    },
+    {
+        "name": "RCA",
+        "description": "Test anomaly root-cause analysis workspace.",
+    },
+    {
+        "name": "Compliance",
+        "description": "Checklist-based compliance requirements and gaps.",
+    },
+    {
+        "name": "Analytics",
+        "description": "Fleet coverage and indexing velocity.",
+    },
 ]
 
 _logger = get_logger(__name__)

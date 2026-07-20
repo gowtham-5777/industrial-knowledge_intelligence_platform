@@ -6,7 +6,7 @@
 **Status:** Active — Single Source of Truth for Development  
 **Architecture Authority:** [ARCHITECTURE.md](ARCHITECTURE.md) — Master Software Architecture Report (finalized; **never modify unless explicitly requested**)  
 **Created:** 2026-07-16  
-**Last Updated:** 2026-07-17  
+**Last Updated:** 2026-07-21  
 
 ---
 
@@ -29,15 +29,15 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 
 | Field | Value |
 |---|---|
-| **Current Phase** | Phase 4 — Industrial AI |
-| **Current Milestone** | Milestone 4.1 — Query Router |
+| **Current Phase** | Phase 5 — Enterprise |
+| **Current Milestone** | Milestone 5.1 — RBAC Hardening |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~55% (Phases 1–3 complete; Phase 3: 13/13 milestones) |
+| **Overall Progress** | ~70% (Phases 1–4 complete; Phase 4: 8/8 milestones) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 4.2 — Industrial Copilot |
-| **Last Tracker Update** | 2026-07-21 — Phase 3 Complete; awaiting approval for 4.1 |
+| **Next Milestone After Current** | Milestone 5.2 — Audit Logs |
+| **Last Tracker Update** | 2026-07-21 — Phase 4 Complete; awaiting approval for 5.1 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -353,14 +353,14 @@ Phases match Architecture §24 exactly.
 
 | ID | Milestone | Status |
 |---|---|---|
-| 4.1 | Query Router | Not Started |
-| 4.2 | Industrial Copilot (LangGraph) | Not Started |
-| 4.3 | Maintenance Intelligence | Not Started |
-| 4.4 | Test Anomaly RCA Assistant | Not Started |
-| 4.5 | Compliance Intelligence Center | Not Started |
-| 4.6 | Analytics | Not Started |
-| 4.7 | Cross-Document Reasoning Hardening | Not Started |
-| 4.8 | Industrial AI Validation Gate | Not Started |
+| 4.1 | Query Router | Complete |
+| 4.2 | Industrial Copilot (LangGraph) | Complete |
+| 4.3 | Maintenance Intelligence | Complete |
+| 4.4 | Test Anomaly RCA Assistant | Complete |
+| 4.5 | Compliance Intelligence Center | Complete |
+| 4.6 | Analytics | Complete |
+| 4.7 | Cross-Document Reasoning Hardening | Complete |
+| 4.8 | Industrial AI Validation Gate | Complete |
 
 ## Phase 5 — Enterprise
 
@@ -752,65 +752,65 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 4.1.1 | Intent classification (MotorLookup, TestReportHistory, Procedure, RCA, Compliance, DrawingCrossRef, OpenDomain) | Not Started |
-| 4.1.2 | Entity linking (model/serial/drawing) | Not Started |
-| 4.1.3 | Fast-model routing (Gemini Flash or equivalent) | Not Started |
+| 4.1.1 | Intent classification (MotorLookup, TestReportHistory, Procedure, RCA, Compliance, DrawingCrossRef, OpenDomain) | Complete |
+| 4.1.2 | Entity linking (model/serial/drawing) | Complete |
+| 4.1.3 | Fast-model routing (Gemini Flash or equivalent) | Complete |
 
 ## Milestone 4.2 — Industrial Copilot
 
 | Task ID | Task | Status |
 |---|---|---|
-| 4.2.1 | LangGraph agent graph | Not Started |
-| 4.2.2 | Shared tools (`get_motor_360`, timeline, tests, compliance, search, graph) | Not Started |
-| 4.2.3 | SSE streaming chat API | Not Started |
-| 4.2.4 | Motor-scoped context when launched from Asset 360 | Not Started |
-| 4.2.5 | Copilot UI (global + embedded) | Not Started |
-| 4.2.6 | Feedback capture | Not Started |
+| 4.2.1 | LangGraph agent graph | Complete |
+| 4.2.2 | Shared tools (`get_motor_360`, timeline, tests, compliance, search, graph) | Complete |
+| 4.2.3 | SSE streaming chat API | Complete |
+| 4.2.4 | Motor-scoped context when launched from Asset 360 | Complete |
+| 4.2.5 | Copilot UI (global + embedded) | Complete |
+| 4.2.6 | Feedback capture | Complete |
 
 ## Milestone 4.3 — Maintenance Intelligence
 
 | Task ID | Task | Status |
 |---|---|---|
-| 4.3.1 | Test metric trends service | Not Started |
-| 4.3.2 | Anomaly pattern detection (rule-assisted) | Not Started |
-| 4.3.3 | Maintenance Intelligence UI | Not Started |
+| 4.3.1 | Test metric trends service | Complete |
+| 4.3.2 | Anomaly pattern detection (rule-assisted) | Complete |
+| 4.3.3 | Maintenance Intelligence UI | Complete |
 
 ## Milestone 4.4 — Test Anomaly RCA Assistant
 
 | Task ID | Task | Status |
 |---|---|---|
-| 4.4.1 | Template-driven 5-Why + similar-report retrieval | Not Started |
-| 4.4.2 | RCA API | Not Started |
-| 4.4.3 | RCA UI workspace | Not Started |
+| 4.4.1 | Template-driven 5-Why + similar-report retrieval | Complete |
+| 4.4.2 | RCA API | Complete |
+| 4.4.3 | RCA UI workspace | Complete |
 
 ## Milestone 4.5 — Compliance Intelligence Center
 
 | Task ID | Task | Status |
 |---|---|---|
-| 4.5.1 | Requirements / evidence / gap detection (checklist-based, Python) | Not Started |
-| 4.5.2 | Compliance APIs | Not Started |
-| 4.5.3 | Compliance Center UI | Not Started |
+| 4.5.1 | Requirements / evidence / gap detection (checklist-based, Python) | Complete |
+| 4.5.2 | Compliance APIs | Complete |
+| 4.5.3 | Compliance Center UI | Complete |
 
 ## Milestone 4.6 — Analytics
 
 | Task ID | Task | Status |
 |---|---|---|
-| 4.6.1 | Fleet coverage + indexing velocity APIs | Not Started |
-| 4.6.2 | Analytics UI charts | Not Started |
+| 4.6.1 | Fleet coverage + indexing velocity APIs | Complete |
+| 4.6.2 | Analytics UI charts | Complete |
 
 ## Milestone 4.7 — Cross-Document Reasoning Hardening
 
 | Task ID | Task | Status |
 |---|---|---|
-| 4.7.1 | Multi-hop retrieval plans for demo questions | Not Started |
-| 4.7.2 | Numeric claim verification against `test_measurements` | Not Started |
+| 4.7.1 | Multi-hop retrieval plans for demo questions | Complete |
+| 4.7.2 | Numeric claim verification against `test_measurements` | Complete |
 
 ## Milestone 4.8 — Industrial AI Validation Gate
 
 | Task ID | Task | Status |
 |---|---|---|
-| 4.8.1 | Run Phase 4 checklists | Not Started |
-| 4.8.2 | Mark Phase 4 Complete | Not Started |
+| 4.8.1 | Run Phase 4 checklists | Complete |
+| 4.8.2 | Mark Phase 4 Complete | Complete |
 
 ---
 
@@ -1523,18 +1523,18 @@ Every milestone checklist must cover the applicable subset:
 ## 11.5 Phase 4 Validation Checklist
 
 **Manual / UI**
-- [ ] Copilot answers 3 Architecture §16 questions with visible citations  
-- [ ] Maintenance + Compliance pages show hero motor evidence  
+- [x] Copilot answers 3 Architecture §16 questions with visible citations  
+- [x] Maintenance + Compliance pages show hero motor evidence  
 
 **API**
-- [ ] SSE stream stable  
-- [ ] Feedback endpoint stores rating  
+- [x] SSE stream stable  
+- [x] Feedback endpoint stores rating  
 
 **Integration**
-- [ ] Router selects correct tools for drawing vs test questions  
+- [x] Router selects correct tools for drawing vs test questions  
 
 **Performance**
-- [ ] P95 copilot latency acceptable for live demo (or graceful degrade)  
+- [x] P95 copilot latency acceptable for live demo (or graceful degrade)  
 
 ## 11.6 Phase 5 Validation Checklist
 
@@ -1563,8 +1563,8 @@ Every milestone checklist must cover the applicable subset:
 |---|---|---|---|---|---|---|
 | Phase 1 — Foundation | Complete | 100% (11/11 milestones) | Engineering | Architecture Report | 2026-07-20 | Gate 1.11 passed; Phase 2 unlocked |
 | Phase 2 — Document Intelligence | Complete | 100% (10/10 milestones) | Engineering | Phase 1 | 2026-07-20 | Hero evidence chain validated; Phase 3 unlocked |
-| Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
-| Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
+| Phase 3 — Asset Intelligence | Complete | 100% (13/13 milestones) | Engineering | Phase 2 | 2026-07-21 | Gate 3.13 passed; Phase 4 unlocked |
+| Phase 4 — Industrial AI | Complete | 100% (8/8 milestones) | Engineering | Phase 3 | 2026-07-21 | Gate 4.8 passed; Phase 5 unlocked |
 | Phase 5 — Enterprise | Not Started | 0% | Engineering | Phase 4 | — | Hackathon MVP subset allowed only after Phase 4 gate |
 | Phase 6 — Testing & Polish | Not Started | 0% | Engineering | Phase 5 or explicit MVP freeze | — | — |
 
@@ -1593,27 +1593,27 @@ Every milestone checklist must cover the applicable subset:
 | 2.8 Citation Pipeline | 2 | Complete | 100% | Engineering | 2.7 | 2026-07-20 | Formatter + verifier + retrieval_traces |
 | 2.9 Continuous Indexing Workers | 2 | Complete | 100% | Engineering | 2.1–2.6 | 2026-07-20 | Celery tasks + priority queue + status APIs |
 | 2.10 Doc Intelligence Gate | 2 | Complete | 100% | Engineering | 2.1–2.9 | 2026-07-20 | Hero motor evidence chain PASS |
-| 3.1 Asset Registry | 3 | Not Started | 0% | — | Phase 2 | — | — |
-| 3.2 Asset Explorer | 3 | Not Started | 0% | — | 3.1 | — | — |
-| 3.3 Asset 360 API | 3 | Not Started | 0% | — | 3.1, 2.6, 2.7 | — | — |
-| 3.4 Timeline | 3 | Not Started | 0% | — | 3.1 | — | — |
-| 3.5 AI Summary | 3 | Not Started | 0% | — | 2.7, 2.8 | — | — |
-| 3.6 Health Score | 3 | Not Started | 0% | — | 2.2, 3.1 | — | Python-only scoring |
-| 3.7 Recommendations | 3 | Not Started | 0% | — | 3.3, 2.7 | — | — |
-| 3.8 Drawing Explorer | 3 | Not Started | 0% | — | 2.6 | — | — |
-| 3.9 Knowledge Graph UI | 3 | Not Started | 0% | — | 2.6 | — | — |
-| 3.10 Unified Search | 3 | Not Started | 0% | — | 2.7, 3.1 | — | — |
-| 3.11 Fleet Dashboard | 3 | Not Started | 0% | — | 1.7, 2.9 | — | — |
-| 3.12 Asset 360 Frontend | 3 | Not Started | 0% | — | 3.3–3.7 | — | Flagship |
-| 3.13 Asset Intelligence Gate | 3 | Not Started | 0% | — | 3.1–3.12 | — | — |
-| 4.1 Query Router | 4 | Not Started | 0% | — | Phase 3 | — | — |
-| 4.2 Industrial Copilot | 4 | Not Started | 0% | — | 4.1, 2.8 | — | — |
-| 4.3 Maintenance Intelligence | 4 | Not Started | 0% | — | 2.2 | — | — |
-| 4.4 RCA | 4 | Not Started | 0% | — | 4.3 | — | Test-anomaly RCA |
-| 4.5 Compliance | 4 | Not Started | 0% | — | 3.1 | — | — |
-| 4.6 Analytics | 4 | Not Started | 0% | — | 2.9 | — | — |
-| 4.7 Cross-doc Reasoning | 4 | Not Started | 0% | — | 4.2 | — | — |
-| 4.8 Industrial AI Gate | 4 | Not Started | 0% | — | 4.1–4.7 | — | — |
+| 3.1 Asset Registry | 3 | Complete |  100% | — | Phase 2 | — | — |
+| 3.2 Asset Explorer | 3 | Complete |  100% | — | 3.1 | — | — |
+| 3.3 Asset 360 API | 3 | Complete |  100% | — | 3.1, 2.6, 2.7 | — | — |
+| 3.4 Timeline | 3 | Complete |  100% | — | 3.1 | — | — |
+| 3.5 AI Summary | 3 | Complete |  100% | — | 2.7, 2.8 | — | — |
+| 3.6 Health Score | 3 | Complete |  100% | — | 2.2, 3.1 | — | Python-only scoring |
+| 3.7 Recommendations | 3 | Complete |  100% | — | 3.3, 2.7 | — | — |
+| 3.8 Drawing Explorer | 3 | Complete |  100% | — | 2.6 | — | — |
+| 3.9 Knowledge Graph UI | 3 | Complete |  100% | — | 2.6 | — | — |
+| 3.10 Unified Search | 3 | Complete |  100% | — | 2.7, 3.1 | — | — |
+| 3.11 Fleet Dashboard | 3 | Complete |  100% | — | 1.7, 2.9 | — | — |
+| 3.12 Asset 360 Frontend | 3 | Complete |  100% | — | 3.3–3.7 | — | Flagship |
+| 3.13 Asset Intelligence Gate | 3 | Complete |  100% | — | 3.1–3.12 | — | — |
+| 4.1 Query Router | 4 | Complete |  100% | — | Phase 3 | — | — |
+| 4.2 Industrial Copilot | 4 | Complete |  100% | — | 4.1, 2.8 | — | — |
+| 4.3 Maintenance Intelligence | 4 | Complete |  100% | — | 2.2 | — | — |
+| 4.4 RCA | 4 | Complete |  100% | — | 4.3 | — | Test-anomaly RCA |
+| 4.5 Compliance | 4 | Complete |  100% | — | 3.1 | — | — |
+| 4.6 Analytics | 4 | Complete |  100% | — | 2.9 | — | — |
+| 4.7 Cross-doc Reasoning | 4 | Complete |  100% | — | 4.2 | — | — |
+| 4.8 Industrial AI Gate | 4 | Complete |  100% | — | 4.1–4.7 | — | — |
 | 5.1 RBAC | 5 | Not Started | 0% | — | Phase 4 | — | — |
 | 5.2 Audit Logs | 5 | Not Started | 0% | — | 5.1 | — | — |
 | 5.3 Caching | 5 | Not Started | 0% | — | 3.3 | — | — |

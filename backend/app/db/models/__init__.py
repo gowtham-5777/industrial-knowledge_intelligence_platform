@@ -1,7 +1,14 @@
 """ORM models for the PostgreSQL system of record (Architecture §12)."""
 
+from app.db.models.ai import CopilotMessage, CopilotSession, FeedbackRating
 from app.db.models.assets import Asset
 from app.db.models.chunks import DocumentChunk, EmbeddingRegistry, RetrievalTrace
+from app.db.models.compliance import (
+    Certification,
+    ComplianceEvidence,
+    ComplianceRequirement,
+    Regulation,
+)
 from app.db.models.documents import (
     Document,
     DocumentAssetLink,
@@ -33,6 +40,11 @@ from app.db.models.system import AuditEvent, Role, User, UserRole
 __all__ = [
     "Asset",
     "AuditEvent",
+    "Certification",
+    "ComplianceEvidence",
+    "ComplianceRequirement",
+    "CopilotMessage",
+    "CopilotSession",
     "Document",
     "DocumentAssetLink",
     "DocumentCatalog",
@@ -43,6 +55,7 @@ __all__ = [
     "DrawingNumber",
     "EmbeddingRegistry",
     "ExtractionCandidate",
+    "FeedbackRating",
     "GdriveSyncState",
     "IndexingJob",
     "MotorAiSummary",
@@ -56,6 +69,7 @@ __all__ = [
     "PerformanceTestReport",
     "Plant",
     "ProductLine",
+    "Regulation",
     "RetrievalTrace",
     "ReviewQueueItem",
     "Role",

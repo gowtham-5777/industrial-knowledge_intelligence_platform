@@ -237,14 +237,14 @@ Development is **milestone-based** (not day-based). One milestone = one feature 
 
 | Milestone | Aspect | Status |
 |---|---|---|
-| **4.1** Query Router | Intent + entity linking | Planned |
-| **4.2** Industrial Copilot | LangGraph agent + SSE chat + citations | Planned |
-| **4.3** Maintenance Intelligence | Test trends / patterns | Planned |
-| **4.4** RCA Assistant | Test-anomaly / evidence-gap reasoning | Planned |
-| **4.5** Compliance Center | Requirement ↔ evidence gaps | Planned |
-| **4.6** Analytics | Coverage & indexing velocity | Planned |
-| **4.7** Reasoning Hardening | Multi-hop + numeric claim checks | Planned |
-| **4.8** Validation Gate | Demo Copilot questions pass | Planned |
+| **4.1** Query Router | Intent + entity linking | Complete |
+| **4.2** Industrial Copilot | LangGraph agent + SSE chat + citations | Complete |
+| **4.3** Maintenance Intelligence | Test trends / patterns | Complete |
+| **4.4** RCA Assistant | Test-anomaly / evidence-gap reasoning | Complete |
+| **4.5** Compliance Center | Requirement ↔ evidence gaps | Complete |
+| **4.6** Analytics | Coverage & indexing velocity | Complete |
+| **4.7** Reasoning Hardening | Multi-hop + numeric claim checks | Complete |
+| **4.8** Validation Gate | Demo Copilot questions pass | Complete |
 
 ### Phase 5 — Enterprise
 
@@ -372,8 +372,11 @@ _Coming later — Asset 360, Fleet Dashboard, Copilot, and Graph views will be a
 | Fleet Dashboard | Complete (Phase 3.11) |
 | Asset Explorer | Complete (Phase 3.2) |
 | Asset 360 | Complete (Phase 3.12) |
-| Industrial Copilot | Pending Milestone 4.2 |
+| Industrial Copilot | Complete (Phase 4.2) |
 | Knowledge Graph | Complete (Phase 3.9) |
+| Maintenance Intelligence | Complete (Phase 4.3) |
+| Compliance Center | Complete (Phase 4.5) |
+| Analytics | Complete (Phase 4.6) |
 
 ---
 
@@ -415,4 +418,4 @@ MIT License — see `LICENSE` (to be added) or use freely for hackathon evaluati
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, DoD, trackers |
 | [docs/MILESTONE_GIT_WORKFLOW.md](docs/MILESTONE_GIT_WORKFLOW.md) | Git branch / tag / PR protocol |
 
-**Current engineering focus:** Milestone **4.1 — Query Router** (next implementation step; awaiting approval). Phase 3 Asset Intelligence is **Complete**.
+**Current engineering focus:** Milestone **5.1 — RBAC Hardening** (next implementation step; awaiting approval). Phase 4 Industrial AI is **Complete**.
