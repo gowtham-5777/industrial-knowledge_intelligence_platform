@@ -1,6 +1,7 @@
 """ORM models for the PostgreSQL system of record (Architecture §12)."""
 
 from app.db.models.assets import Asset
+from app.db.models.chunks import DocumentChunk, EmbeddingRegistry, RetrievalTrace
 from app.db.models.documents import (
     Document,
     DocumentAssetLink,
@@ -8,6 +9,12 @@ from app.db.models.documents import (
     DocumentVersion,
 )
 from app.db.models.drawings import DocumentDrawingLink, DrawingNumber
+from app.db.models.extraction import (
+    ExtractionCandidate,
+    PerformanceTestReport,
+    ReviewQueueItem,
+    TestMeasurement,
+)
 from app.db.models.motors import (
     MotorAiSummary,
     MotorAlias,
@@ -29,10 +36,13 @@ __all__ = [
     "Document",
     "DocumentAssetLink",
     "DocumentCatalog",
+    "DocumentChunk",
     "DocumentDrawingLink",
     "DocumentParseResult",
     "DocumentVersion",
     "DrawingNumber",
+    "EmbeddingRegistry",
+    "ExtractionCandidate",
     "GdriveSyncState",
     "IndexingJob",
     "MotorAiSummary",
@@ -43,9 +53,13 @@ __all__ = [
     "MotorRecommendation",
     "MotorTimelineEvent",
     "MotorUnit",
+    "PerformanceTestReport",
     "Plant",
     "ProductLine",
+    "RetrievalTrace",
+    "ReviewQueueItem",
     "Role",
+    "TestMeasurement",
     "User",
     "UserRole",
 ]

@@ -42,7 +42,14 @@ OPENAPI_TAGS = [
     },
     {
         "name": "Indexing",
-        "description": "Parsing / OCR pipeline, job status, and parse results.",
+        "description": (
+            "Parsing, chunking, embeddings, Qdrant indexing, hybrid retrieval, "
+            "citations, and continuous indexing status."
+        ),
+    },
+    {
+        "name": "Extraction",
+        "description": "Metadata / entity extraction, measurements, review queue.",
     },
 ]
 

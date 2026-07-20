@@ -65,6 +65,22 @@
 #   AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT / KEY for T1 (test reports)
 #   PARSE_FALLBACK_WITHOUT_AZURE=true demotes T1 → T2 (PyMuPDF) when unset
 #
+# Document Intelligence (Milestones 2.2–2.9):
+#   POST /api/v1/extraction/run              {"document_id"}
+#   GET  /api/v1/extraction/candidates/{id}
+#   GET  /api/v1/extraction/measurements/{id}
+#   GET  /api/v1/extraction/review-queue
+#   POST /api/v1/indexing/chunk              {"document_id"}
+#   POST /api/v1/indexing/index              {"document_id"}
+#   POST /api/v1/indexing/pipeline           {"document_id"}
+#   POST /api/v1/indexing/retrieve           {"query", "motor_type_code"?}
+#   POST /api/v1/indexing/citations/verify   {"text"}
+#   GET  /api/v1/indexing/status
+#   GET  /api/v1/indexing/priority-subset
+#   POST /api/v1/indexing/priority-enqueue
+#   Celery worker: celery -A app.workers.celery_app.celery_app worker -l info
+#   Hero validation: python scripts/validate_phase2_hero.py
+#
 # Probes:
 #   GET /health
 #   GET /ready

@@ -205,15 +205,15 @@ Development is **milestone-based** (not day-based). One milestone = one feature 
 | Milestone | Aspect | Status |
 |---|---|---|
 | **2.1** Parsing & OCR | Tiered parsers (PyMuPDF, Azure DI, metadata-only CAD) | Complete |
-| **2.2** Entity Extraction | Drawing numbers, specs, IEC 60034 measurements | Planned |
-| **2.3** Chunking | Doc-type-aware chunks + citation metadata | Planned |
-| **2.4** Embeddings | Versioned embedding pipeline | Planned |
-| **2.5** Qdrant Indexing | Vector upsert + payload filters | Planned |
-| **2.6** Neo4j Graph Sync | Asset-center graph + drawing-number hubs | Planned |
-| **2.7** Hybrid Retrieval | Vector + metadata + graph + rerank | Planned |
-| **2.8** Citations | Provenance formatter + verifier | Planned |
-| **2.9** Indexing Workers | Adaptive priority queue + status APIs | Planned |
-| **2.10** Validation Gate | Hero-motor evidence chain proven | Planned |
+| **2.2** Entity Extraction | Drawing numbers, specs, IEC 60034 measurements | Complete |
+| **2.3** Chunking | Doc-type-aware chunks + citation metadata | Complete |
+| **2.4** Embeddings | Versioned embedding pipeline | Complete |
+| **2.5** Qdrant Indexing | Vector upsert + payload filters | Complete |
+| **2.6** Neo4j Graph Sync | Asset-center graph + drawing-number hubs | Complete |
+| **2.7** Hybrid Retrieval | Vector + metadata + graph + rerank | Complete |
+| **2.8** Citations | Provenance formatter + verifier | Complete |
+| **2.9** Indexing Workers | Adaptive priority queue + status APIs | Complete |
+| **2.10** Validation Gate | Hero-motor evidence chain proven | Complete |
 
 ### Phase 3 — Asset Intelligence
 
@@ -415,4 +415,4 @@ MIT License — see `LICENSE` (to be added) or use freely for hackathon evaluati
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, DoD, trackers |
 | [docs/MILESTONE_GIT_WORKFLOW.md](docs/MILESTONE_GIT_WORKFLOW.md) | Git branch / tag / PR protocol |
 
-**Current engineering focus:** Milestone **2.2 — Metadata & Entity Extraction** (next implementation step; awaiting approval). Milestone 2.1 Parsing & OCR is **Complete**.
+**Current engineering focus:** Milestone **3.1 — Asset Registry** (next implementation step; awaiting approval). Phase 2 Document Intelligence is **Complete**.

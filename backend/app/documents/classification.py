@@ -38,12 +38,16 @@ _CATEGORY_ALIASES: dict[str, str] = {
     "certifications": "certificate",
 }
 
+# Architecture § drawing linker: 3GZF/3GZC…, 9AKK…, 3AXD…
 _DRAWING_RE = re.compile(
-    r"(?i)(3GZ[A-Z0-9]{6,}(?![A-Z0-9])|3AXD\d{9,})",
+    r"(?i)(" r"3GZ[A-Z0-9]{6,}(?:-[A-Z0-9]+)?" r"|9AKK[A-Z0-9]{6,}" r"|3AXD\d{9,}" r")",
 )
 
+# Sheet references on multi-sheet drawings (A1 / A2 / A3)
+_SHEET_RE = re.compile(r"(?i)(?:^|[_\-\s.])(A[123])(?:[_\-\s.]|$)")
+
 _MOTOR_CODE_RE = re.compile(
-    r"\b(M3BP|M2BA|M3AA|ACS\d{3}|ACQ\d{3}|ACH\d{3})\b",
+    r"\b(M3BP|M2BA|M3AA|ACS\d{3}|ACQ\d{3}|ACH\d{3}|Low_Voltage_Motor(?:\s*-\s*\d+)?)\b",
     re.IGNORECASE,
 )
 
@@ -112,16 +116,37 @@ def guess_mime_type(filename: str) -> str | None:
 
 def extract_drawing_number(filename: str) -> str | None:
     match = _DRAWING_RE.search(filename)
+    if not match:
+        return None
+    return match.group(1).upper().replace(" ", "")
+
+
+def extract_sheet_id(filename: str) -> str | None:
+    """Return A1/A2/A3 sheet token when present in the filename."""
+    match = _SHEET_RE.search(filename)
     return match.group(1).upper() if match else None
+
+
+def extract_all_drawing_numbers(text: str) -> list[str]:
+    """Deduplicated drawing numbers found in filename or body text."""
+    found: list[str] = []
+    seen: set[str] = set()
+    for match in _DRAWING_RE.finditer(text or ""):
+        value = match.group(1).upper().replace(" ", "")
+        if value not in seen:
+            seen.add(value)
+            found.append(value)
+    return found
 
 
 def extract_motor_type_code(filename: str, folder_path: str = "") -> str | None:
     haystack = f"{folder_path}/{filename}"
     match = _MOTOR_CODE_RE.search(haystack)
     if match:
-        return match.group(1).upper()
+        return re.sub(r"\s+", " ", match.group(1).strip())
     for part in PurePosixPath(normalize_rel_path(folder_path or "")).parts:
-        if "motor" in part.lower() and "-" in part:
+        lower = part.lower()
+        if "motor" in lower and "-" in part:
             return part.strip()
     return None
 

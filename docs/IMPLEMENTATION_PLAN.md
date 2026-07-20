@@ -29,15 +29,15 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 
 | Field | Value |
 |---|---|
-| **Current Phase** | Phase 2 — Document Intelligence |
-| **Current Milestone** | Milestone 2.2 — Metadata & Entity Extraction |
+| **Current Phase** | Phase 3 — Asset Intelligence |
+| **Current Milestone** | Milestone 3.1 — Asset Registry |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~22% (Phase 1 complete; Phase 2: 1/10 milestones) |
+| **Overall Progress** | ~40% (Phase 1–2 complete; Phase 2: 10/10 milestones) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 2.3 — Chunking |
-| **Last Tracker Update** | 2026-07-20 — Milestone 2.1 Complete; awaiting approval for 2.2 |
+| **Next Milestone After Current** | Milestone 3.2 — Asset Explorer |
+| **Last Tracker Update** | 2026-07-20 — Phase 2 Complete; awaiting approval for 3.1 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -321,15 +321,15 @@ Phases match Architecture §24 exactly.
 | ID | Milestone | Status |
 |---|---|---|
 | 2.1 | Parsing & OCR Pipeline | Complete |
-| 2.2 | Metadata & Entity Extraction | Not Started |
-| 2.3 | Chunking | Not Started |
-| 2.4 | Embedding Pipeline | Not Started |
-| 2.5 | Qdrant Vector Indexing | Not Started |
-| 2.6 | Neo4j Knowledge Graph Sync | Not Started |
-| 2.7 | Hybrid Retrieval Engine | Not Started |
-| 2.8 | Citation & Provenance Pipeline | Not Started |
-| 2.9 | Continuous Intelligent Indexing Workers | Not Started |
-| 2.10 | Document Intelligence Validation Gate | Not Started |
+| 2.2 | Metadata & Entity Extraction | Complete |
+| 2.3 | Chunking | Complete |
+| 2.4 | Embedding Pipeline | Complete |
+| 2.5 | Qdrant Vector Indexing | Complete |
+| 2.6 | Neo4j Knowledge Graph Sync | Complete |
+| 2.7 | Hybrid Retrieval Engine | Complete |
+| 2.8 | Citation & Provenance Pipeline | Complete |
+| 2.9 | Continuous Intelligent Indexing Workers | Complete |
+| 2.10 | Document Intelligence Validation Gate | Complete |
 
 ## Phase 3 — Asset Intelligence
 
@@ -538,85 +538,94 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.2.1 | Drawing number regex extractor (`3GZF`, `9AKK`, `A1/A2/A3`) | Not Started |
-| 2.2.2 | Motor type / frame / power field extractors | Not Started |
-| 2.2.3 | IEC 60034 test measurement extraction | Not Started |
-| 2.2.4 | Certification / regulation field extractors | Not Started |
-| 2.2.5 | Extraction candidate + review queue persistence | Not Started |
+| 2.2.1 | Drawing number regex extractor (`3GZF`, `9AKK`, `A1/A2/A3`) | Complete |
+| 2.2.2 | Motor type / frame / power field extractors | Complete |
+| 2.2.3 | IEC 60034 test measurement extraction | Complete |
+| 2.2.4 | Certification / regulation field extractors | Complete |
+| 2.2.5 | Extraction candidate + review queue persistence | Complete |
 
 ## Milestone 2.3 — Chunking
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.3.1 | Doc-type-aware chunkers (tests, datasheets, manuals, regulations, drawings) | Not Started |
-| 2.3.2 | Chunk metadata payload contract | Not Started |
-| 2.3.3 | Parent section retention for citations | Not Started |
-| 2.3.4 | Persist `document_chunks` | Not Started |
+| 2.3.1 | Doc-type-aware chunkers (tests, datasheets, manuals, regulations, drawings) | Complete |
+| 2.3.2 | Chunk metadata payload contract | Complete |
+| 2.3.3 | Parent section retention for citations | Complete |
+| 2.3.4 | Persist `document_chunks` | Complete |
 
 ## Milestone 2.4 — Embedding Pipeline
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.4.1 | Embedding provider abstraction | Not Started |
-| 2.4.2 | Hackathon provider (`text-embedding-3-small` or `voyage-3`) | Not Started |
-| 2.4.3 | Store `embedding_model_version` | Not Started |
-| 2.4.4 | Batch + incremental embed jobs | Not Started |
+| 2.4.1 | Embedding provider abstraction | Complete |
+| 2.4.2 | Hackathon provider (`text-embedding-3-small` or `voyage-3`) | Complete |
+| 2.4.3 | Store `embedding_model_version` | Complete |
+| 2.4.4 | Batch + incremental embed jobs | Complete |
 
 ## Milestone 2.5 — Qdrant Vector Indexing
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.5.1 | Collection schema + payload indexes | Not Started |
-| 2.5.2 | Upsert / delete / reindex operations | Not Started |
-| 2.5.3 | Hybrid dense (+ sparse if enabled) configuration | Not Started |
-| 2.5.4 | Filter by asset/doc_type/drawing_number | Not Started |
+| 2.5.1 | Collection schema + payload indexes | Complete |
+| 2.5.2 | Upsert / delete / reindex operations | Complete |
+| 2.5.3 | Hybrid dense (+ sparse if enabled) configuration | Complete |
+| 2.5.4 | Filter by asset/doc_type/drawing_number | Complete |
 
 ## Milestone 2.6 — Neo4j Knowledge Graph Sync
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.6.1 | Graph schema constraints/indexes | Not Started |
-| 2.6.2 | Asset/Motor center-node projection | Not Started |
-| 2.6.3 | DrawingNumber linker hubs | Not Started |
-| 2.6.4 | HAS_* relationship writers from SoR | Not Started |
-| 2.6.5 | Idempotent graph sync jobs | Not Started |
+| 2.6.1 | Graph schema constraints/indexes | Complete |
+| 2.6.2 | Asset/Motor center-node projection | Complete |
+| 2.6.3 | DrawingNumber linker hubs | Complete |
+| 2.6.4 | HAS_* relationship writers from SoR | Complete |
+| 2.6.5 | Idempotent graph sync jobs | Complete |
 
 ## Milestone 2.7 — Hybrid Retrieval Engine
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.7.1 | Parallel vector + keyword/metadata + graph expansion | Not Started |
-| 2.7.2 | Reciprocal Rank Fusion | Not Started |
-| 2.7.3 | Parent document promotion | Not Started |
-| 2.7.4 | Reranker integration | Not Started |
-| 2.7.5 | Structured context assembler | Not Started |
+| 2.7.1 | Parallel vector + keyword/metadata + graph expansion | Complete |
+| 2.7.2 | Reciprocal Rank Fusion | Complete |
+| 2.7.3 | Parent document promotion | Complete |
+| 2.7.4 | Reranker integration | Complete |
+| 2.7.5 | Structured context assembler | Complete |
 
 ## Milestone 2.8 — Citation & Provenance Pipeline
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.8.1 | Citation formatter `[doc_id:chunk_id]` | Not Started |
-| 2.8.2 | Citation resolver / verification | Not Started |
-| 2.8.3 | Retrieval trace persistence | Not Started |
-| 2.8.4 | Confidence scoring inputs | Not Started |
+| 2.8.1 | Citation formatter `[doc_id:chunk_id]` | Complete |
+| 2.8.2 | Citation resolver / verification | Complete |
+| 2.8.3 | Retrieval trace persistence | Complete |
+| 2.8.4 | Confidence scoring inputs | Complete |
 
 ## Milestone 2.9 — Continuous Intelligent Indexing Workers
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.9.1 | Celery/ARQ worker bootstrap | Not Started |
-| 2.9.2 | Adaptive priority queue (test reports → … → drawings) | Not Started |
-| 2.9.3 | Job states: queued→parsing→extracting→indexing→graph_sync→ready|failed | Not Started |
-| 2.9.4 | Indexing status APIs for UI | Not Started |
-| 2.9.5 | Hero motor + priority subset selection tooling | Not Started |
+| 2.9.1 | Celery/ARQ worker bootstrap | Complete |
+| 2.9.2 | Adaptive priority queue (test reports → … → drawings) | Complete |
+| 2.9.3 | Job states: queued→parsing→extracting→indexing→graph_sync→ready|failed | Complete |
+| 2.9.4 | Indexing status APIs for UI | Complete |
+| 2.9.5 | Hero motor + priority subset selection tooling | Complete |
 
 ## Milestone 2.10 — Document Intelligence Validation Gate
 
 | Task ID | Task | Status |
 |---|---|---|
-| 2.10.1 | Validate hero motor evidence chain exists | Not Started |
-| 2.10.2 | Run Phase 2 checklists | Not Started |
-| 2.10.3 | Mark Phase 2 Complete | Not Started |
+| 2.10.1 | Validate hero motor evidence chain exists | Complete |
+| 2.10.2 | Run Phase 2 checklists | Complete |
+| 2.10.3 | Mark Phase 2 Complete | Complete |
+
+**Milestone 2.2–2.10 DoD met — 2026-07-20** (Phase 2 complete).
+
+**Validation evidence (2026-07-20):**
+- Backend: ``pytest`` 70 passed (11 new Phase 2 intelligence tests); ``ruff`` / ``black`` clean
+- Hero gate: ``python scripts/validate_phase2_hero.py`` → **PASS** (8 Low_Voltage_Motor-001 docs; graph links; hybrid retrieval + valid citations)
+- APIs: extraction, chunk, index, pipeline, retrieve, citations/verify, indexing status/priority
+- Migration: ``c2d3e4f5a6b7`` (extraction_candidates, review_queue, test_measurements, document_chunks, embedding_registry, retrieval_traces)
+- Corpus: real local dataset under ``CORPUS_LOCAL_ROOT`` (Motors hero + other asset domains equally supported by classifiers)
 
 ---
 
@@ -1544,7 +1553,7 @@ Every milestone checklist must cover the applicable subset:
 | Phase | Status | Progress | Owner | Dependencies | Completion Date | Notes |
 |---|---|---|---|---|---|---|
 | Phase 1 — Foundation | Complete | 100% (11/11 milestones) | Engineering | Architecture Report | 2026-07-20 | Gate 1.11 passed; Phase 2 unlocked |
-| Phase 2 — Document Intelligence | In Progress | 10% (1/10 milestones) | Engineering | Phase 1 | — | **ACTIVE** — 2.1 complete |
+| Phase 2 — Document Intelligence | Complete | 100% (10/10 milestones) | Engineering | Phase 1 | 2026-07-20 | Hero evidence chain validated; Phase 3 unlocked |
 | Phase 3 — Asset Intelligence | Not Started | 0% | Engineering | Phase 2 | — | — |
 | Phase 4 — Industrial AI | Not Started | 0% | Engineering | Phase 3 | — | — |
 | Phase 5 — Enterprise | Not Started | 0% | Engineering | Phase 4 | — | Hackathon MVP subset allowed only after Phase 4 gate |
@@ -1566,15 +1575,15 @@ Every milestone checklist must cover the applicable subset:
 | 1.10 Logging Foundation | 1 | Complete | 100% | Engineering | 1.2 | 2026-07-20 | JSON logs; request_id contextvars; get_logger; latency counters |
 | 1.11 Foundation Validation Gate | 1 | Complete | 100% | Engineering | 1.1–1.10 | 2026-07-20 | Phase 1 suite green; validate_phase1.py; no P1 blockers |
 | 2.1 Parsing & OCR | 2 | Complete | 100% | Engineering | Phase 1 | 2026-07-20 | Tier router T0–T4; Azure DI + PyMuPDF; parse jobs + results |
-| 2.2 Metadata & Entity Extraction | 2 | Not Started | 0% | — | 2.1 | — | **ACTIVE** |
-| 2.3 Chunking | 2 | Not Started | 0% | — | 2.1 | — | — |
-| 2.4 Embedding Pipeline | 2 | Not Started | 0% | — | 2.3 | — | — |
-| 2.5 Qdrant Indexing | 2 | Not Started | 0% | — | 2.4 | — | — |
-| 2.6 Neo4j Graph Sync | 2 | Not Started | 0% | — | 2.2 | — | — |
-| 2.7 Hybrid Retrieval | 2 | Not Started | 0% | — | 2.5, 2.6 | — | — |
-| 2.8 Citation Pipeline | 2 | Not Started | 0% | — | 2.7 | — | — |
-| 2.9 Continuous Indexing Workers | 2 | Not Started | 0% | — | 2.1–2.6 | — | — |
-| 2.10 Doc Intelligence Gate | 2 | Not Started | 0% | — | 2.1–2.9 | — | — |
+| 2.2 Metadata & Entity Extraction | 2 | Complete | 100% | Engineering | 2.1 | 2026-07-20 | Drawing/9AKK/IEC extractors + review queue |
+| 2.3 Chunking | 2 | Complete | 100% | Engineering | 2.1 | 2026-07-20 | Doc-type chunkers + document_chunks |
+| 2.4 Embedding Pipeline | 2 | Complete | 100% | Engineering | 2.3 | 2026-07-20 | OpenAI text-embedding-3-small + registry |
+| 2.5 Qdrant Indexing | 2 | Complete | 100% | Engineering | 2.4 | 2026-07-20 | Collection + filtered upsert/search |
+| 2.6 Neo4j Graph Sync | 2 | Complete | 100% | Engineering | 2.2 | 2026-07-20 | Motor-centered HAS_* + DrawingNumber hubs |
+| 2.7 Hybrid Retrieval | 2 | Complete | 100% | Engineering | 2.5, 2.6 | 2026-07-20 | Vector+keyword+graph RRF + rerank |
+| 2.8 Citation Pipeline | 2 | Complete | 100% | Engineering | 2.7 | 2026-07-20 | Formatter + verifier + retrieval_traces |
+| 2.9 Continuous Indexing Workers | 2 | Complete | 100% | Engineering | 2.1–2.6 | 2026-07-20 | Celery tasks + priority queue + status APIs |
+| 2.10 Doc Intelligence Gate | 2 | Complete | 100% | Engineering | 2.1–2.9 | 2026-07-20 | Hero motor evidence chain PASS |
 | 3.1 Asset Registry | 3 | Not Started | 0% | — | Phase 2 | — | — |
 | 3.2 Asset Explorer | 3 | Not Started | 0% | — | 3.1 | — | — |
 | 3.3 Asset 360 API | 3 | Not Started | 0% | — | 3.1, 2.6, 2.7 | — | — |

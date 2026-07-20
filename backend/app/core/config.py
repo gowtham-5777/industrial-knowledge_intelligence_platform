@@ -83,6 +83,20 @@ class Settings(BaseSettings):
     # When Azure DI is unset, demote T1 → T2 (PyMuPDF) instead of failing hard
     parse_fallback_without_azure: bool = True
 
+    # --- Embeddings (Milestone 2.4) ---
+    embedding_model: str = "text-embedding-3-small"
+    embedding_dimensions: int = 1536
+
+    # --- Qdrant (Milestone 2.5) ---
+    qdrant_url: str = "http://localhost:6333"
+    qdrant_api_key: str = ""
+    qdrant_collection: str = "industrial_brain_chunks"
+
+    # --- Neo4j (Milestone 2.6) ---
+    neo4j_uri: str = "bolt://localhost:7687"
+    neo4j_user: str = "neo4j"
+    neo4j_password: str = "change-me-neo4j"
+
     # --- Logging / observability (Milestone 1.10) ---
     log_level: str = "INFO"
     log_json: bool = True
