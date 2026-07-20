@@ -29,15 +29,15 @@ This file is the **master execution guide** for Industrial Brain AI. It converts
 
 | Field | Value |
 |---|---|
-| **Current Phase** | Phase 3 — Asset Intelligence |
-| **Current Milestone** | Milestone 3.1 — Asset Registry |
+| **Current Phase** | Phase 4 — Industrial AI |
+| **Current Milestone** | Milestone 4.1 — Query Router |
 | **Current Task** | Not Started |
 | **Current Subtask** | — |
-| **Overall Progress** | ~40% (Phase 1–2 complete; Phase 2: 10/10 milestones) |
+| **Overall Progress** | ~55% (Phases 1–3 complete; Phase 3: 13/13 milestones) |
 | **Active Owner** | Cursor Agent / Engineering Team |
 | **Blocked By** | — |
-| **Next Milestone After Current** | Milestone 3.2 — Asset Explorer |
-| **Last Tracker Update** | 2026-07-20 — Phase 2 Complete; awaiting approval for 3.1 |
+| **Next Milestone After Current** | Milestone 4.2 — Industrial Copilot |
+| **Last Tracker Update** | 2026-07-21 — Phase 3 Complete; awaiting approval for 4.1 |
 
 > **Cursor obligation:** Before implementing anything, read this section, locate the active milestone, implement only that scope, validate, update this tracker, then stop.
 
@@ -335,19 +335,19 @@ Phases match Architecture §24 exactly.
 
 | ID | Milestone | Status |
 |---|---|---|
-| 3.1 | Asset Registry (Asset-Agnostic + Motor Hierarchy) | Not Started |
-| 3.2 | Asset Explorer | Not Started |
-| 3.3 | Asset 360 Aggregation API | Not Started |
-| 3.4 | Asset Timeline | Not Started |
-| 3.5 | AI Asset Summary Service | Not Started |
-| 3.6 | Explainable Health / Risk Score Engine | Not Started |
-| 3.7 | AI Recommendation Engine | Not Started |
-| 3.8 | Drawing Explorer & Cross-Reference | Not Started |
-| 3.9 | Knowledge Graph UI | Not Started |
-| 3.10 | Unified Search | Not Started |
-| 3.11 | Fleet Dashboard & Indexing Status UI | Not Started |
-| 3.12 | Asset 360 Frontend Flagship | Not Started |
-| 3.13 | Asset Intelligence Validation Gate | Not Started |
+| 3.1 | Asset Registry (Asset-Agnostic + Motor Hierarchy) | Complete |
+| 3.2 | Asset Explorer | Complete |
+| 3.3 | Asset 360 Aggregation API | Complete |
+| 3.4 | Asset Timeline | Complete |
+| 3.5 | AI Asset Summary Service | Complete |
+| 3.6 | Explainable Health / Risk Score Engine | Complete |
+| 3.7 | AI Recommendation Engine | Complete |
+| 3.8 | Drawing Explorer & Cross-Reference | Complete |
+| 3.9 | Knowledge Graph UI | Complete |
+| 3.10 | Unified Search | Complete |
+| 3.11 | Fleet Dashboard & Indexing Status UI | Complete |
+| 3.12 | Asset 360 Frontend Flagship | Complete |
+| 3.13 | Asset Intelligence Validation Gate | Complete |
 
 ## Phase 4 — Industrial AI
 
@@ -633,111 +633,120 @@ Tasks below are the executable units. Status values: `Not Started` | `In Progres
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.1.1 | AssetType discriminator model + APIs | Not Started |
-| 3.1.2 | Motor hierarchy: ProductLine → Family → Model → Unit | Not Started |
-| 3.1.3 | Alias table for lookup | Not Started |
-| 3.1.4 | Catalog-driven asset stub enrichment | Not Started |
-| 3.1.5 | Select/confirm hero motor + 4 supporting motors | Not Started |
+| 3.1.1 | AssetType discriminator model + APIs | Complete |
+| 3.1.2 | Motor hierarchy: ProductLine → Family → Model → Unit | Complete |
+| 3.1.3 | Alias table for lookup | Complete |
+| 3.1.4 | Catalog-driven asset stub enrichment | Complete |
+| 3.1.5 | Select/confirm hero motor + 4 supporting motors | Complete |
 
 ## Milestone 3.2 — Asset Explorer
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.2.1 | List/search/filter motors API | Not Started |
-| 3.2.2 | Explorer UI (browse by frame/power/IE) | Not Started |
-| 3.2.3 | Open Asset 360 navigation | Not Started |
+| 3.2.1 | List/search/filter motors API | Complete |
+| 3.2.2 | Explorer UI (browse by frame/power/IE) | Complete |
+| 3.2.3 | Open Asset 360 navigation | Complete |
 
 ## Milestone 3.3 — Asset 360 Aggregation API
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.3.1 | Single-bundle endpoint (specs, docs, summary, health, recs, timeline, subgraph) | Not Started |
-| 3.3.2 | Document panels grouping by category | Not Started |
-| 3.3.3 | Related assets query | Not Started |
+| 3.3.1 | Single-bundle endpoint (specs, docs, summary, health, recs, timeline, subgraph) | Complete |
+| 3.3.2 | Document panels grouping by category | Complete |
+| 3.3.3 | Related assets query | Complete |
 
 ## Milestone 3.4 — Asset Timeline
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.4.1 | Timeline event builder from metadata/extracted dates | Not Started |
-| 3.4.2 | Timeline API | Not Started |
-| 3.4.3 | Estimated-date honest UX badge support | Not Started |
+| 3.4.1 | Timeline event builder from metadata/extracted dates | Complete |
+| 3.4.2 | Timeline API | Complete |
+| 3.4.3 | Estimated-date honest UX badge support | Complete |
 
 ## Milestone 3.5 — AI Asset Summary Service
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.5.1 | Structured summary schema | Not Started |
-| 3.5.2 | Scoped retrieval + LLM structured generation | Not Started |
-| 3.5.3 | Cache table + invalidation on new links | Not Started |
-| 3.5.4 | “Not available in indexed knowledge” honesty rules | Not Started |
+| 3.5.1 | Structured summary schema | Complete |
+| 3.5.2 | Scoped retrieval + LLM structured generation | Complete |
+| 3.5.3 | Cache table + invalidation on new links | Complete |
+| 3.5.4 | “Not available in indexed knowledge” honesty rules | Complete |
 
 ## Milestone 3.6 — Explainable Health / Risk Score Engine
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.6.1 | Deterministic weighted scoring (Python only) | Not Started |
-| 3.6.2 | Evidence records for each bullet | Not Started |
-| 3.6.3 | Recompute triggers | Not Started |
-| 3.6.4 | API: score + reasoning bullets | Not Started |
+| 3.6.1 | Deterministic weighted scoring (Python only) | Complete |
+| 3.6.2 | Evidence records for each bullet | Complete |
+| 3.6.3 | Recompute triggers | Complete |
+| 3.6.4 | API: score + reasoning bullets | Complete |
 
 ## Milestone 3.7 — AI Recommendation Engine
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.7.1 | Recommendation templates + LangGraph sub-agent | Not Started |
-| 3.7.2 | Cache + refresh API | Not Started |
-| 3.7.3 | Citation-backed recommendation cards contract | Not Started |
+| 3.7.1 | Recommendation templates + LangGraph sub-agent | Complete |
+| 3.7.2 | Cache + refresh API | Complete |
+| 3.7.3 | Citation-backed recommendation cards contract | Complete |
 
 ## Milestone 3.8 — Drawing Explorer & Cross-Reference
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.8.1 | Drawing number lookup API | Not Started |
-| 3.8.2 | Cross-reference bundle API | Not Started |
-| 3.8.3 | Drawing Explorer UI | Not Started |
+| 3.8.1 | Drawing number lookup API | Complete |
+| 3.8.2 | Cross-reference bundle API | Complete |
+| 3.8.3 | Drawing Explorer UI | Complete |
 
 ## Milestone 3.9 — Knowledge Graph UI
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.9.1 | Motor-centered subgraph API | Not Started |
-| 3.9.2 | Graph visualization (React Flow or vis-network) | Not Started |
-| 3.9.3 | Mini-graph embed for Asset 360 | Not Started |
+| 3.9.1 | Motor-centered subgraph API | Complete |
+| 3.9.2 | Graph visualization (React Flow or vis-network) | Complete |
+| 3.9.3 | Mini-graph embed for Asset 360 | Complete |
 
 ## Milestone 3.10 — Unified Search
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.10.1 | Unified search API (motor + knowledge + drawing) | Not Started |
-| 3.10.2 | Search UI page | Not Started |
+| 3.10.1 | Unified search API (motor + knowledge + drawing) | Complete |
+| 3.10.2 | Search UI page | Complete |
 
 ## Milestone 3.11 — Fleet Dashboard & Indexing Status UI
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.11.1 | Dashboard KPI API | Not Started |
-| 3.11.2 | Continuous Indexing progress UI | Not Started |
-| 3.11.3 | Fleet dashboard page | Not Started |
+| 3.11.1 | Dashboard KPI API | Complete |
+| 3.11.2 | Continuous Indexing progress UI | Complete |
+| 3.11.3 | Fleet dashboard page | Complete |
 
 ## Milestone 3.12 — Asset 360 Frontend Flagship
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.12.1 | Asset 360 page layout (Architecture wireframe) | Not Started |
-| 3.12.2 | Header, summary, health, recommendations zones | Not Started |
-| 3.12.3 | Tabs: Timeline, Documents, Tests, Drawings, Compliance, Graph | Not Started |
-| 3.12.4 | Embedded Copilot entry point (context handoff; agent may land in Phase 4) | Not Started |
-| 3.12.5 | Hero motor end-to-end population verification | Not Started |
+| 3.12.1 | Asset 360 page layout (Architecture wireframe) | Complete |
+| 3.12.2 | Header, summary, health, recommendations zones | Complete |
+| 3.12.3 | Tabs: Timeline, Documents, Tests, Drawings, Compliance, Graph | Complete |
+| 3.12.4 | Embedded Copilot entry point (context handoff; agent may land in Phase 4) | Complete |
+| 3.12.5 | Hero motor end-to-end population verification | Complete |
 
 ## Milestone 3.13 — Asset Intelligence Validation Gate
 
 | Task ID | Task | Status |
 |---|---|---|
-| 3.13.1 | Run Phase 3 checklists on hero motor | Not Started |
-| 3.13.2 | Mark Phase 3 Complete | Not Started |
+| 3.13.1 | Run Phase 3 checklists on hero motor | Complete |
+| 3.13.2 | Mark Phase 3 Complete | Complete |
 
 ---
+
+**Milestone 3.1–3.13 DoD met — 2026-07-21** (Phase 3 complete).
+
+**Validation evidence (2026-07-21):**
+- Backend: `pytest` 74 passed (4 Phase 3 asset tests); `ruff` / `black` clean
+- Frontend: `npm run build` succeeded (Explorer, Motor 360, Dashboard, Search, Drawings, Graph, Sync)
+- APIs: motors registry/explorer, motor360 bundle, timeline/summary/health/recommendations, drawings, search, dashboard KPIs, graph subgraph
+- Hero set: `Low_Voltage_Motor-001` + 4 supporting motors; Asset 360 zones populated from registry + linked docs
+- Gate script: `python scripts/validate_phase3_hero.py`
 
 ## Milestone 4.1 — Query Router
 

@@ -79,7 +79,12 @@ class HybridRetrievalService:
         doc_category: str | None = None,
         asset_id: str | None = None,
     ) -> dict[str, Any]:
-        with ThreadPoolExecutor(max_workers=3) as pool:
+        # NOTE: only channels that never touch ``self.session`` (vector/graph —
+        # embedding + Qdrant + Neo4j calls) run on background threads. The
+        # SQLAlchemy ``Session`` is not thread-safe, so the keyword-search
+        # channel (which queries ``self.session`` directly) runs synchronously
+        # on the calling thread to avoid corrupting an in-progress transaction.
+        with ThreadPoolExecutor(max_workers=2) as pool:
             fut_vector = pool.submit(
                 self.vectors.search,
                 query,
@@ -89,21 +94,19 @@ class HybridRetrievalService:
                 motor_model=motor_type_code,
                 asset_id=asset_id,
             )
-            fut_keyword = pool.submit(
-                self._keyword_search,
+            fut_graph = pool.submit(
+                self._graph_expand,
+                motor_type_code=motor_type_code,
+                drawing_number=drawing_number,
+            )
+            keyword_hits = self._keyword_search(
                 query,
                 limit=limit * 2,
                 motor_type_code=motor_type_code,
                 drawing_number=drawing_number,
                 doc_category=doc_category,
             )
-            fut_graph = pool.submit(
-                self._graph_expand,
-                motor_type_code=motor_type_code,
-                drawing_number=drawing_number,
-            )
             vector_hits = fut_vector.result()
-            keyword_hits = fut_keyword.result()
             graph_doc_ids = fut_graph.result()
 
         vector_ids = [
